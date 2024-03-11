@@ -1,0 +1,65 @@
+.itemContainer {
+  margin: 1rem 1rem 4rem 1rem;
+}
+
+.itemContainer .heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 1rem 0rem 1rem 1.5rem;
+}
+
+.heading .info {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.list {
+  padding: 0.8rem 1.6rem;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list:hover {
+  background-color: rgba(128, 128, 128, 0.35);
+  border-radius: 12px;
+}
+
+.album {
+  width: 26.5vw;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.album:hover {
+  text-decoration: underline;
+  color: white;
+  cursor: pointer;
+}
+
+.listindex {
+  width: 30vw;
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.listindex img {
+  border-radius: 9px;
+  margin-left: 1.5rem;
+}
+
+.listindex .info {
+  margin-left: 1rem;
+}
+
+.name:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.list .duration {
+  color: rgba(255, 255, 255, 0.5);
+}

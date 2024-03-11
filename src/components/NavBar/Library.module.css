@@ -1,0 +1,94 @@
+.container {
+  border-radius: 12px;
+  margin-top: 5rem;
+  background-color: rgba(128, 128, 128, 0.15);
+  opacity: 0;
+  animation: fade-in 0.8s ease-in 200ms forwards;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heading {
+  padding: 1rem;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: large;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid grey;
+}
+
+.heading img {
+  width: 25px;
+  height: 25px;
+  margin-right: 1rem;
+}
+
+.title {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.artistLists {
+  height: 60vh;
+  overflow-y: scroll;
+}
+
+.artistLists::-webkit-scrollbar {
+  display: none;
+}
+
+.listContainer {
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.listContainer:hover {
+  background-color: rgba(128, 128, 128, 0.3);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.listContainer:hover .name {
+  text-decoration: underline;
+}
+
+.listImage {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+}
+
+.artistName {
+  padding-left: 1rem;
+}
+
+.artistName .name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.15rem;
+}
+
+.artistName .type {
+  opacity: 0.5;
+  font-size: 0.8rem;
+}

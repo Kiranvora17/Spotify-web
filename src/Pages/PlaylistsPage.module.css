@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+  margin-top: -1px;
+  margin-bottom: 0.5rem;
+  overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}

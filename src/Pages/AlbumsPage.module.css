@@ -1,0 +1,32 @@
+:root {
+  --background: black;
+}
+
+.container {
+  width: 100%;
+  margin-top: -1px;
+  margin-bottom: 0.5rem;
+  overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.recommend {
+  margin-top: 5rem;
+}
+
+.recommendtitle {
+  font-size: 2rem;
+  padding: 1rem;
+  margin-left: 0.6rem;
+}
+
+.recommendContainer {
+  display: flex;
+  flex-wrap: wrap;
+}

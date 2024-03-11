@@ -1,0 +1,39 @@
+.container {
+  margin: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
+  border-radius: 12px;
+  /* background-color: pink; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transition: all 0.1s ease-in-out;
+}
+
+.container:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.container img {
+  margin: 0rem 0.2rem;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+
+.info {
+  margin: 0.2rem 1rem;
+}
+
+.name {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.container:hover .name {
+  text-decoration: underline;
+}
+
+.type {
+  color: rgba(255, 255, 255, 0.5);
+}

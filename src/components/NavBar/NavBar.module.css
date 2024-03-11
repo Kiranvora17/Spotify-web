@@ -1,0 +1,45 @@
+.logo img {
+  width: 200px;
+  height: 60px;
+  margin: 1rem 0 1rem 1.5rem;
+}
+
+.navLists .link {
+  list-style: none;
+  padding: 1rem 0 1rem 1.5rem;
+}
+
+.link {
+  padding: 0.8rem 0;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.activeImg {
+  width: 15px !important;
+  height: 15px !important;
+  margin-top: 0.2rem;
+}
+
+.linkTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link:hover {
+  border-radius: 12px;
+  background-color: rgba(128, 128, 128, 0.3);
+}
+
+.navLists img {
+  width: 24px;
+  height: 24px;
+  margin-right: 1rem;
+}

@@ -1,0 +1,65 @@
+.itemContainer {
+  margin: 0rem 1rem;
+}
+
+.list {
+  border-radius: 12px;
+  padding: 0.8rem 1.6rem;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list:hover {
+  background-color: rgba(128, 128, 128, 0.35);
+}
+
+.list .listArtists {
+  color: rgba(255, 255, 255, 0.5);
+  padding-top: 0.2rem;
+  font-size: smaller;
+}
+
+.artist:hover {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: underline rgba(255, 255, 255, 0.8);
+}
+
+.listindex {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.listindex .info {
+  margin-left: 1.6rem;
+}
+
+.name:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.durationContainer {
+  display: flex;
+  width: 5rem;
+  justify-content: space-between;
+}
+
+.durationContainer img {
+  transition: all 0.1s ease-in-out;
+  opacity: 0;
+}
+
+.list:hover .durationContainer img {
+  transform: scale(1.1);
+  opacity: 1;
+  cursor: pointer;
+}
+
+.list .duration {
+  color: rgba(255, 255, 255, 0.5);
+}

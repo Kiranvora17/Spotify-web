@@ -1,0 +1,97 @@
+.container {
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 47rem;
+}
+
+.searchContainer .back {
+  margin: 0.5rem 0.25rem 0rem;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+}
+
+.searchContainer button {
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+}
+
+.back:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.disabled {
+  opacity: 0.3;
+}
+
+.disabled:hover {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.searchbar {
+  width: 40rem;
+  border: 1px solid rgba(255, 255, 255, 1);
+  border-radius: 100px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.searchbar:hover {
+  background-color: rgba(28, 28, 28, 0.7);
+}
+
+.searchbar .search {
+  color: white;
+  width: 40rem;
+  border: none;
+  background-color: transparent;
+  padding-left: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.search:focus {
+  outline: none;
+}
+
+.profileContainer {
+  width: fit-content;
+  margin-right: 1rem;
+  padding: 0.5rem;
+  border-radius: 100px;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.profileContainer:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scaleX(1.02);
+}
+
+.profileContainer img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 0rem 0.5rem 0rem 0rem;
+}
+
+.profileContainer p {
+  font-weight: 600;
+  padding: 0rem 0.5rem;
+}

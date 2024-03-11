@@ -1,0 +1,11 @@
+.container {
+  margin: 0.5rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 7rem;
+  font-weight: 300;
+}
