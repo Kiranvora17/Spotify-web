@@ -14,6 +14,7 @@ import Album from "./components/Album/Album";
 import Playlist from "./components/Playlist/Playlist";
 import Artist from "./components/Artist/Artist";
 import Tracks from "./components/Tracks/Tracks";
+import Like from "./components/Like/Like";
 
 const getCode = async () => {
   const codeVerifier = generateRandomString(64);
@@ -24,7 +25,7 @@ const getCode = async () => {
   const redirectUri = "http://localhost:3000/";
 
   const scope =
-    "user-read-private user-read-email user-read-recently-played user-top-read user-follow-read";
+    "user-read-private user-read-email user-read-recently-played user-top-read user-follow-read user-library-read playlist-read-private";
   const authUrl = new URL("https://accounts.spotify.com/authorize");
 
   // generated in the previous step
@@ -108,6 +109,8 @@ function App() {
         { path: "playlist/:playlistId", element: <Playlist /> },
         { path: "artist/:artistId", element: <Artist /> },
         { path: "track/:trackId", element: <Tracks /> },
+        { path: "like", element: <Like /> },
+        { path: "like/:likeType", element: <FeedItemsAll /> },
       ],
     },
   ]);

@@ -15,8 +15,13 @@ const FeedItems = (props) => {
         message: props.playlist.message,
       })
     );
-    const message = props.playlist.message.replaceAll(" ", "");
-    navigate(`feed/${message}`);
+
+    if (window.location.pathname === "/feed") {
+      const message = props.playlist.message.replaceAll(" ", "");
+      navigate(`feed/${message}`);
+    } else if (window.location.pathname === "/like") {
+      navigate(`${props.playlist.type}`);
+    }
   };
 
   return (

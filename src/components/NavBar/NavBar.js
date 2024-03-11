@@ -46,16 +46,16 @@ const NavBar = () => {
               <img src="https://i.postimg.cc/XYZhZYTb/home.png"></img>
               <p>Home</p>
             </div>
-            {window.location.href === "http://localhost:3000/" ? (
+            {window.location.pathname === "/" ? (
               <img className={classes.activeImg} src={dotImg}></img>
             ) : null}
           </NavLink>
-          <NavLink className={classes.link}>
+          <NavLink to={"/like"} className={classes.link}>
             <div className={classes.linkTitle}>
               <img src="https://i.postimg.cc/8cTv342b/like.png"></img>
               <p>Like</p>
             </div>
-            {params.type === "like" ? (
+            {window.location.pathname === "/like" ? (
               <img className={classes.activeImg} src={dotImg}></img>
             ) : null}
           </NavLink>
