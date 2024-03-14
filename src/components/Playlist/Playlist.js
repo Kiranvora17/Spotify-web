@@ -35,7 +35,7 @@ const Playlist = () => {
   }, []);
 
   if (!loading) {
-    return <PlaylistsPage />;
+    return <PlaylistsPage id={params.playlistId} />;
   }
 };
 

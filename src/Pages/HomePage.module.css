@@ -2,8 +2,7 @@
   min-width: 100vw;
   min-height: 100vh;
   z-index: 1;
-  /* background-image: url("https://wallpapers.com/images/hd/spotify-background-9swsnn0d6snp9bf1.jpg"); */
-  background-image: url("https://i.scdn.co/image/ab67706f00000002319bd79eba1610f1f5fe6a4b");
+  background-image: url("https://wallpapers.com/images/hd/spotify-background-9swsnn0d6snp9bf1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -47,10 +46,11 @@
 
 .main {
   background-color: rgba(128, 128, 128, 0.15);
-  margin: 0.5rem 0.75rem;
+  margin: 0.5rem 0.75rem 0rem;
   border-radius: 12px;
   overflow-y: scroll;
   position: relative;
+  top: 0;
 }
 
 .main::-webkit-scrollbar {

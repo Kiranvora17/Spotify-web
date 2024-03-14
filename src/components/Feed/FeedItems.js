@@ -16,7 +16,7 @@ const FeedItems = (props) => {
       })
     );
 
-    if (window.location.pathname === "/feed") {
+    if (window.location.pathname === "/") {
       const message = props.playlist.message.replaceAll(" ", "");
       navigate(`feed/${message}`);
     } else if (window.location.pathname === "/like") {

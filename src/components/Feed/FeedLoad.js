@@ -13,6 +13,7 @@ import {
 } from "../../store/FeedActions";
 import { feedActions } from "../../store/feed-slice";
 import Loading from "../Loading";
+import { profileActions } from "../../store/profile-slice";
 
 const FeedLoad = () => {
   const dispatch = useDispatch();
@@ -63,6 +64,8 @@ const FeedLoad = () => {
       "https://api.spotify.com/v1/me/top/artists",
       TopArtistsActions
     );
+
+    await fetchData("https://api.spotify.com/v1/me", profileActions.setMe);
 
     setLoading(false);
   }, [dispatch]);

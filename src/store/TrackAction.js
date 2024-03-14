@@ -41,7 +41,7 @@ export const trackArtistAction = (playlist) => {
         name: item.name,
         id: item.id,
         type: item.type,
-        image: item.images[0].url,
+        image: item.images[0]?.url,
       };
 
       filterData.push(obj);

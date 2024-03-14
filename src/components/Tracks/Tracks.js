@@ -37,7 +37,7 @@ const Tracks = () => {
   }, [params.trackId]);
 
   if (!loading) {
-    return <TrackPage />;
+    return <TrackPage id={params.trackId} />;
   }
 };
 

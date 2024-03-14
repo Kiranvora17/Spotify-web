@@ -12,7 +12,7 @@ const AlbumsPage = (props) => {
   return (
     <div className={classes.container}>
       <AlbumHeading playlist={playlist} />
-      <AlbumNavigation playlist={playlist} />
+      <AlbumNavigation id={props.id} playlist={playlist} />
       <AlbumList playlist={playlist} />
       {playlist.artists.name !== "Various Artists" && (
         <div className={classes.recommend}>

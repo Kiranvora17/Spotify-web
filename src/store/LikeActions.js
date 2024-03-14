@@ -40,6 +40,18 @@ export const likeTrackActions = (playlist) => {
   };
 };
 
+export const trackIdsActions = (playlist) => {
+  return (dispatch) => {
+    const ids = [];
+
+    for (const item of playlist.items) {
+      ids.push(item.track.id);
+    }
+
+    dispatch(likeActions.setTracksIds({ ids: ids }));
+  };
+};
+
 export const likeAlbumActions = (playlist) => {
   return (dispatch) => {
     const filterData = [],
@@ -66,6 +78,18 @@ export const likeAlbumActions = (playlist) => {
         playlistTrim: filterDataTrim,
       })
     );
+  };
+};
+
+export const albumIdsActions = (playlist) => {
+  return (dispatch) => {
+    const ids = [];
+
+    for (const item of playlist.items) {
+      ids.push(item.album.id);
+    }
+
+    dispatch(likeActions.setAlbumIds({ ids: ids }));
   };
 };
 
@@ -97,5 +121,17 @@ export const likePlaylistActions = (playlist) => {
         playlistTrim: filterDataTrim,
       })
     );
+  };
+};
+
+export const playlistIdsActions = (playlist) => {
+  return (dispatch) => {
+    const ids = [];
+
+    for (const item of playlist.items) {
+      ids.push(item.id);
+    }
+
+    dispatch(likeActions.setPlaylistIds({ ids: ids }));
   };
 };

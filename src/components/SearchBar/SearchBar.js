@@ -5,10 +5,12 @@ import to from "../../images/rightArrow.png";
 import search from "../../images/search.png";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 const SearchBar = () => {
   const navigate = useNavigate();
   const ref = useRef();
+  const me = useSelector((state) => state.profile.me);
 
   useEffect(() => {
     if (window.location.pathname === "/") {
@@ -17,6 +19,10 @@ const SearchBar = () => {
       document.getElementById("back").classList.remove(`${classes.disabled}`);
     }
   }, [window.location.pathname]);
+
+  const navigateHandler = () => {
+    navigate("/me");
+  };
 
   const backHandler = () => {
     navigate(-1);
@@ -49,10 +55,18 @@ const SearchBar = () => {
           ></input>
         </div>
       </div>
-      <div className={classes.profileContainer}>
-        <p>Kiran</p>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk1wr1yrOBQiwirwFdBeIUAeIU9vPg09-NpaXWEipuyQ&s"></img>
-      </div>
+      {me.name ? (
+        <div onClick={navigateHandler} className={classes.profileContainer}>
+          <p>{me.name}</p>
+          <img
+            src={
+              me.image
+                ? me.image
+                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk1wr1yrOBQiwirwFdBeIUAeIU9vPg09-NpaXWEipuyQ&s"
+            }
+          ></img>
+        </div>
+      ) : null}
     </div>
   );
 };

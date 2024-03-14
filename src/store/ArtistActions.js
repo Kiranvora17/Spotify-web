@@ -149,7 +149,7 @@ export const relatedAction = (playlist) => {
       const obj = {
         description: "Artist",
         id: item.id,
-        image: item.images[0].url,
+        image: item.images[0]?.url,
         name: item.name,
         type: item.type,
       };

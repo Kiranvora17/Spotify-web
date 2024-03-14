@@ -17,7 +17,7 @@ import Toptracks from "../components/Tracks/TopTracks";
 import PopularRelease from "../components/Tracks/PopularReleases";
 import Loading from "../components/Loading";
 
-const TrackPage = () => {
+const TrackPage = (props) => {
   const params = useParams();
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -78,7 +78,7 @@ const TrackPage = () => {
     return (
       <div className={classes.container}>
         <TrackHeading playlist={track} />
-        <TrackNavigation playlist={track} />
+        <TrackNavigation id={props.id} playlist={track} />
         <TrackArtist />
         <TrackList />
         <Toptracks />

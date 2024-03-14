@@ -24,7 +24,7 @@ const Album = () => {
       dispatch(saveData(response));
       setLoading(false);
     },
-    [accessToken]
+    [params.albumId]
   );
 
   useEffect(() => {

@@ -6,12 +6,14 @@ import hash from "../../images/hash.png";
 import duration from "../../images/duration.png";
 
 import classes from "./PlaylistNavigation.module.css";
+import { useSelector } from "react-redux";
 
 const PlaylistNavigation = (props) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const playUrl = "https://i.postimg.cc/W1Y1PWzS/icons8-play-50-1.png";
   const pauseUrl = "https://i.postimg.cc/tTmyQL7z/icons8-pause-button-50-1.png";
+  const playlist = useSelector((state) => state.like.playlistIds);
 
   useEffect(() => {
     const primary = document.getElementById("primary");
@@ -49,7 +51,10 @@ const PlaylistNavigation = (props) => {
         <img
           className={classes.like}
           onClick={changeLike}
-          src={isLiked ? liked : like}
+          src={
+            playlist.findIndex((id) => id === props.id) !== -1 ? liked : like
+          }
+          // src={isLiked ? liked : like}
           width={30}
           height={30}
         ></img>

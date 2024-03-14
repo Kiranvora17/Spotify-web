@@ -16,7 +16,12 @@ const FeedArtist = (props) => {
       })
     );
     const message = props.playlist.message.replaceAll(" ", "");
-    navigate(`feed/${message}`);
+
+    if (window.location.pathname === "/feed") {
+      navigate(`feed/${message}`);
+    } else if (window.location.pathname === "/me") {
+      navigate(`/me/${props.type}`);
+    }
   };
 
   return (

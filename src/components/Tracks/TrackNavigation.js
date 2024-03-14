@@ -3,12 +3,14 @@ import liked from "../../images/liked.png";
 import like from "../../images/like.png";
 
 import classes from "./TrackNavigation.module.css";
+import { useSelector } from "react-redux";
 
 const TrackNavigation = (props) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const playUrl = "https://i.postimg.cc/W1Y1PWzS/icons8-play-50-1.png";
   const pauseUrl = "https://i.postimg.cc/tTmyQL7z/icons8-pause-button-50-1.png";
+  const tracksIds = useSelector((state) => state.like.tracksIds);
 
   useEffect(() => {
     const primary = document.getElementById("primary");
@@ -41,7 +43,10 @@ const TrackNavigation = (props) => {
         <img
           className={classes.like}
           onClick={changeLike}
-          src={isLiked ? liked : like}
+          src={
+            tracksIds.findIndex((id) => id === props.id) !== -1 ? liked : like
+          }
+          // src={isLiked ? liked : like}
           width={30}
           height={30}
         ></img>

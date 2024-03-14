@@ -5,12 +5,14 @@ import like from "../../images/like.png";
 import liked from "../../images/liked.png";
 import duration from "../../images/duration.png";
 import hash from "../../images/hash.png";
+import { useSelector } from "react-redux";
 
 const AlbumNavigation = (props) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const playUrl = "https://i.postimg.cc/W1Y1PWzS/icons8-play-50-1.png";
   const pauseUrl = "https://i.postimg.cc/tTmyQL7z/icons8-pause-button-50-1.png";
+  const albumIds = useSelector((state) => state.like.albumIds);
 
   useEffect(() => {
     const primary = document.getElementById("primary");
@@ -38,6 +40,11 @@ const AlbumNavigation = (props) => {
 
     navObserver.observe(scrollWatcher);
     navObserverOut.observe(itemcontainer);
+
+    return () => {
+      navObserver.unobserve(scrollWatcher);
+      navObserverOut.unobserve(itemcontainer);
+    };
   }, []);
 
   const changeSrc = () => {
@@ -60,7 +67,10 @@ const AlbumNavigation = (props) => {
         <img
           className={classes.like}
           onClick={changeLike}
-          src={isLiked ? liked : like}
+          src={
+            // albumIds.findIndex((id) => id === props.id) !== -1 ? liked : like
+            like
+          }
           width={30}
           height={30}
         ></img>
