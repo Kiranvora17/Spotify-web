@@ -6,6 +6,7 @@ import artistSlice from "./artist-slice";
 import trackSlice from "./track-slice";
 import likeSlice from "./like-slice";
 import profileSlice from "./profile-slice";
+import searchslice from "./search-slice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     track: trackSlice.reducer,
     like: likeSlice.reducer,
     profile: profileSlice.reducer,
+    search: searchslice.reducer,
   },
 });
 

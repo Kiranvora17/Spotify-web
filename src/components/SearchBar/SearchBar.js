@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 const SearchBar = () => {
   const navigate = useNavigate();
-  const ref = useRef();
+  const searchref = useRef();
   const me = useSelector((state) => state.profile.me);
 
   useEffect(() => {
@@ -32,6 +32,12 @@ const SearchBar = () => {
     navigate(1);
   };
 
+  const changeHandler = () => {
+    if (searchref.current.value) {
+      navigate(`/search/${searchref.current.value}`);
+    }
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.searchContainer}>
@@ -46,9 +52,15 @@ const SearchBar = () => {
             <img className={classes.back} src={to}></img>
           </button>
         </div>
-        <div ref={ref} className={classes.searchbar}>
+        <div className={classes.searchbar}>
           <img src={search} width={20} height={20}></img>
           <input
+            ref={searchref}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                changeHandler();
+              }
+            }}
             className={classes.search}
             type="text"
             placeholder="What would you like to listen today?"
@@ -60,8 +72,8 @@ const SearchBar = () => {
           <p>{me.name}</p>
           <img
             src={
-              me.image
-                ? me.image
+              me.imageSmall
+                ? me.imageSmall
                 : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk1wr1yrOBQiwirwFdBeIUAeIU9vPg09-NpaXWEipuyQ&s"
             }
           ></img>

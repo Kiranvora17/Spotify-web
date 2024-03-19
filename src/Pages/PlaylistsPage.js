@@ -1,17 +1,18 @@
 import { useSelector } from "react-redux";
-import PlaylistHeading from "../components/Playlist/PlaylistHeading";
-import PlaylistNavigation from "../components/Playlist/PlaylistNavigation";
-import PlaylistList from "../components/Playlist/PlaylistList";
 
 import classes from "./PlaylistsPage.module.css";
+import playlists from "../components/pageComponents/Heading.module.css";
+import Heading from "../components/pageComponents/Heading";
+import Navigation from "../components/pageComponents/Navigation";
+import TracksList from "../components/pageComponents/TracksList";
 
 const PlaylistsPage = (props) => {
   const playlist = useSelector((state) => state.playlist.playlist);
   return (
     <div className={classes.container}>
-      <PlaylistHeading playlist={playlist} />
-      <PlaylistNavigation id={props.id} playlist={playlist} />
-      <PlaylistList playlist={playlist} />
+      <Heading className={`${playlists.default}`} playlist={playlist} />
+      <Navigation id={props.id} playlist={playlist} />
+      <TracksList playlist={playlist} />
     </div>
   );
 };

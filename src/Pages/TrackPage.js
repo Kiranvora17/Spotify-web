@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./TrackPage.module.css";
-import TrackHeading from "../components/Tracks/TrackHeading";
-import TrackNavigation from "../components/Tracks/TrackNavigation";
+import tracks from "../components/pageComponents/Heading.module.css";
 import { useCallback, useEffect, useState } from "react";
 import {
   albumAction,
@@ -16,6 +15,8 @@ import { useParams } from "react-router";
 import Toptracks from "../components/Tracks/TopTracks";
 import PopularRelease from "../components/Tracks/PopularReleases";
 import Loading from "../components/Loading";
+import Heading from "../components/pageComponents/Heading";
+import Navigation from "../components/pageComponents/Navigation";
 
 const TrackPage = (props) => {
   const params = useParams();
@@ -68,17 +69,17 @@ const TrackPage = (props) => {
         albumAction
       );
 
+      // document.getElementById("heading").classList.add(`${tracks.track}`);
       setLoading(false);
     };
-
     fetchAll();
   }, []);
 
   if (!loading) {
     return (
       <div className={classes.container}>
-        <TrackHeading playlist={track} />
-        <TrackNavigation id={props.id} playlist={track} />
+        <Heading className={`${tracks.track}`} playlist={track} />
+        <Navigation id={props.id} playlist={track} />
         <TrackArtist />
         <TrackList />
         <Toptracks />

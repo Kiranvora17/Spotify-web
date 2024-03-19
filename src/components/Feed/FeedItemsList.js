@@ -1,15 +1,23 @@
 import { useNavigate } from "react-router";
 import classes from "./FeedItemsList.module.css";
 
+import play from "../../images/play-feed.png";
+// import pause from "../../images/pause-feed.png";
+
 const FeedItemsList = (props) => {
   const navigate = useNavigate();
   const navigateHandler = (type, id) => {
     navigate(`/${type}/${id}`);
   };
 
+  const clickHandler = (event) => {
+    event.stopPropagation();
+    console.log("image clicked");
+  };
+
   return (
     <>
-      {props.playlist.map((feed) => {
+      {props.playlist?.map((feed) => {
         return (
           <div
             onClick={() => {
@@ -18,7 +26,12 @@ const FeedItemsList = (props) => {
             className={classes.feed}
             key={feed.id}
           >
-            <div>
+            <div className={classes.feedimage}>
+              <img
+                onClick={(event) => clickHandler(event)}
+                className={classes.playpause}
+                src={play}
+              ></img>
               <img className={classes.image} src={`${feed.image}`}></img>
             </div>
             <p className={classes.feedName}>

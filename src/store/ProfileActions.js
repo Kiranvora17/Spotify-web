@@ -69,7 +69,6 @@ export const profileTracksActions = (playlist) => {
       length++;
     }
 
-    console.log(filterData);
     dispatch(
       profileActions.setTracks({
         playlist: filterData,

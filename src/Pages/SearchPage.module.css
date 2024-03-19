@@ -1,0 +1,13 @@
+.container {
+  margin: 0 0.5rem;
+}
+
+.itemContainer {
+  margin: 1rem 1rem 2rem 1rem;
+}
+
+.itemContainer .heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 2rem 0rem 1rem 1.5rem;
+}

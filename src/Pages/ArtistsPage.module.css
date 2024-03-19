@@ -11,18 +11,3 @@
 .container::-webkit-scrollbar {
   display: none;
 }
-
-.recommend {
-  margin: 5rem 1rem 0rem;
-}
-
-.recommendtitle {
-  font-size: 2rem;
-  padding: 1rem;
-  margin-left: 0.6rem;
-}
-
-.recommendContainer {
-  display: flex;
-  flex-wrap: wrap;
-}

@@ -10,6 +10,7 @@ import Tracks from "./components/Tracks/Tracks";
 import Like from "./components/Like/Like";
 import Profile from "./components/Profile/Profile";
 import LoginPage from "./Pages/LoginPage";
+import Search from "./components/SearchBar/Search";
 
 function App() {
   const router = createBrowserRouter([
@@ -25,8 +26,9 @@ function App() {
         { path: "track/:trackId", element: <Tracks /> },
         { path: "like", element: <Like /> },
         { path: "like/:likeType", element: <FeedItemsAll /> },
-        { path: "/me", element: <Profile /> },
-        { path: "/me/:type", element: <FeedItemsAll /> },
+        { path: "me", element: <Profile /> },
+        { path: "me/:type", element: <FeedItemsAll /> },
+        { path: "search/:string", element: <Search /> },
       ],
     },
     {

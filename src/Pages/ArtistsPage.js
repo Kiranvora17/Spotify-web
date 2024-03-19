@@ -1,6 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import ArtistHeading from "../components/Artist/ArtistHeading";
-import ArtistNavigation from "../components/Artist/ArtistNavigation";
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import {
@@ -14,6 +12,10 @@ import {
 import PopularTracks from "../components/Artist/PopularTracks";
 import ArtistPopular from "../components/Artist/ArtistPopular";
 import Loading from "../components/Loading";
+import Heading from "../components/pageComponents/Heading";
+import Navigation from "../components/pageComponents/Navigation";
+import classes from "./ArtistsPage.module.css";
+import artists from "../components/pageComponents/Heading.module.css";
 
 const ArtistsPage = () => {
   const artist = useSelector((state) => state.artist.Artist.items);
@@ -72,12 +74,12 @@ const ArtistsPage = () => {
 
   if (!loading) {
     return (
-      <>
-        <ArtistHeading artist={artist} />
-        <ArtistNavigation artist={artist} />
+      <div className={classes.container}>
+        <Heading className={`${artists.artist}`} playlist={artist} />
+        <Navigation playlist={artist} />
         <PopularTracks />
         <ArtistPopular />
-      </>
+      </div>
     );
   } else {
     return <Loading />;

@@ -1,3 +1,11 @@
+:root {
+  --background: transparent;
+  --heading-font-size: 2.5rem;
+  --heading-font-weight: 500;
+  --heading-image-border-radius: 12px;
+  --heading-image-width: 270px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,14 +13,7 @@
 }
 
 body {
-  font-family: "Source Code Pro", monospace;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Azeret Mono", monospace;
   background-color: black;
   color: white;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
 }

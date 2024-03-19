@@ -9,7 +9,7 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!timeStamp || Date.now() - timeStamp > 3600000) {
+    if (!timeStamp || Date.now() - timeStamp > 3500000) {
       navigate("/login");
     }
   }, []);

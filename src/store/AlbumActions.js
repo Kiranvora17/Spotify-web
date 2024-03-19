@@ -1,3 +1,4 @@
+import { useParams } from "react-router";
 import { albumActions } from "./album-slice";
 
 const findDuration = (duration) => {
@@ -43,13 +44,15 @@ export const albumAction = (playList) => {
         image: playList.images[0].url,
         name: playList.name,
         total_tracks: playList.total_tracks,
+        type: playList.type,
       })
     );
   };
 };
 
-export const recommendActions = (playlist, id) => {
+export const recommendActions = (playlist) => {
   return (dispatch) => {
+    // const params = useParams();
     const filterData = [];
 
     for (const item of playlist.items) {
@@ -65,7 +68,6 @@ export const recommendActions = (playlist, id) => {
       filterData.push(obj);
     }
 
-    const data = filterData.filter((item) => item.id !== id);
-    dispatch(albumActions.setRecommend({ playlist: data }));
+    dispatch(albumActions.setRecommend({ playlist: filterData }));
   };
 };

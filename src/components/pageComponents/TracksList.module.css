@@ -3,7 +3,6 @@
 }
 
 .list {
-  border-radius: 12px;
   padding: 0.8rem 1.6rem;
   display: flex;
   flex-flow: row;
@@ -13,12 +12,18 @@
 
 .list:hover {
   background-color: rgba(128, 128, 128, 0.35);
+  border-radius: 12px;
 }
 
 .list .listArtists {
   color: rgba(255, 255, 255, 0.5);
   padding-top: 0.2rem;
-  font-size: smaller;
+  font-size: 0.7rem;
+}
+
+.name:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .artist:hover {
@@ -27,37 +32,32 @@
   text-decoration: underline rgba(255, 255, 255, 0.8);
 }
 
+.album {
+  width: 26.5vw;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.album:hover {
+  text-decoration: underline;
+  color: white;
+  cursor: pointer;
+}
+
 .listindex {
+  width: 30vw;
   display: flex;
   flex-flow: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
+.listindex img {
+  border-radius: 9px;
+  margin-left: 1.5rem;
+}
+
 .listindex .info {
-  margin-left: 1.6rem;
-}
-
-.name:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.durationContainer {
-  display: flex;
-  width: 5rem;
-  justify-content: space-between;
-}
-
-.durationContainer img {
-  transition: all 0.1s ease-in-out;
-  opacity: 0;
-}
-
-.list:hover .durationContainer img {
-  transform: scale(1.1);
-  opacity: 1;
-  cursor: pointer;
+  margin-left: 1rem;
 }
 
 .list .duration {

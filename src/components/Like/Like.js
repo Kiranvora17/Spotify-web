@@ -10,6 +10,10 @@ import {
 import LikeTracks from "./LikeTracks";
 import LikePopular from "./LikePopular";
 import Loading from "../Loading";
+import Heading from "../pageComponents/Heading";
+import Navigation from "../pageComponents/Navigation";
+import classes from "./Like.module.css";
+import likes from "../pageComponents/Heading.module.css";
 
 const Like = () => {
   const dispatch = useDispatch();
@@ -48,18 +52,20 @@ const Like = () => {
         "https://api.spotify.com/v1/me/playlists",
         likePlaylistActions
       );
+
       setLoading(false);
     };
-
     fetchAll();
   }, []);
 
   if (!loading) {
     return (
-      <>
+      <div className={classes.container}>
+        <Heading className={`${likes.like}`} />
+        <Navigation playlist={{ name: "Liked", type: "like" }} />
         <LikeTracks />
         <LikePopular />
-      </>
+      </div>
     );
   } else {
     return <Loading />;
