@@ -41,7 +41,7 @@ const FeedLoad = () => {
     );
 
     await fetchData(
-      `https://api.spotify.com/v1/me/player/recently-played?before=${Date.now()}`,
+      `https://api.spotify.com/v1/me/player/recently-played?limit=50&before=${Date.now()}`,
       recentlyActions
     );
 

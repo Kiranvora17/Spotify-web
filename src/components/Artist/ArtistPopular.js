@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import FeedItems from "../Feed/FeedItems";
-import FeedArtist from "../Feed/FeedArtist";
 
 const ArtistPopular = () => {
   const popularRelease = useSelector((state) => state.artist.popularRelease);
@@ -21,7 +20,7 @@ const ArtistPopular = () => {
         <FeedItems disabled={true} playlist={compilation} />
       )}
       {related.itemsTrim.length > 0 && (
-        <FeedArtist disabled={true} playlist={related} />
+        <FeedItems disabled={true} playlist={related} />
       )}
       {appearsOn.itemsTrim.length > 0 && (
         <FeedItems disabled={true} playlist={appearsOn} />

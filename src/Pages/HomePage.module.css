@@ -26,7 +26,7 @@
   display: grid;
   height: 100%;
   grid-template-columns: 22% 78%;
-  grid-auto-rows: 100px auto;
+  grid-auto-rows: 85px auto;
 }
 
 .gridContainer div {
@@ -46,7 +46,7 @@
 
 .main {
   background-color: rgba(128, 128, 128, 0.15);
-  margin: 0.5rem 0.75rem 0rem;
+  margin: 0.5rem 0.5rem 0.5rem 0.75rem;
   border-radius: 12px;
   overflow-y: scroll;
   position: relative;
@@ -55,4 +55,28 @@
 
 .main::-webkit-scrollbar {
   display: none;
+}
+
+.player {
+  z-index: 10;
+  width: 75%;
+  height: 85px;
+  background-color: rgb(68, 68, 68);
+  border-radius: 12px;
+  position: absolute;
+  left: 61%;
+  bottom: 2%;
+  transform: translate(-50%, 0%);
+  animation: pop-up 0.8s ease-in-out forwards;
+}
+
+@keyframes pop-up {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%, 0%);
+  }
 }

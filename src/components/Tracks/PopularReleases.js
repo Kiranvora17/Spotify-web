@@ -8,22 +8,26 @@ const PopularRelease = (props) => {
 
   return (
     <>
-      <div className={classes.feedContainer}>
-        <div className={classes.feedHeading}>
-          <h2>Popular Release by {props.name}</h2>
+      {single.items.length > 0 && (
+        <div className={classes.feedContainer}>
+          <div className={classes.feedHeading}>
+            <h2>Popular Release by {props.name}</h2>
+          </div>
+          <div className={classes.itemContainer}>
+            <FeedItemsList playlist={single.items} />
+          </div>
         </div>
-        <div className={classes.itemContainer}>
-          <FeedItemsList playlist={single.items} />
+      )}
+      {album.items.length > 0 && (
+        <div className={classes.feedContainer}>
+          <div className={classes.feedHeading}>
+            <h2>Popular Albums by {props.name}</h2>
+          </div>
+          <div className={classes.itemContainer}>
+            <FeedItemsList playlist={album.items} />
+          </div>
         </div>
-      </div>
-      <div className={classes.feedContainer}>
-        <div className={classes.feedHeading}>
-          <h2>Popular Albums by {props.name}</h2>
-        </div>
-        <div className={classes.itemContainer}>
-          <FeedItemsList playlist={album.items} />
-        </div>
-      </div>
+      )}
     </>
   );
 };

@@ -1,16 +1,22 @@
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import classes from "./NavBar.module.css";
 import dotImg from "../../images/dot.png";
 import Library from "./Library";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { libraryActions } from "../../store/FeedActions";
+import CheckLogin from "../../Authorization/CheckLogin";
 
 const NavBar = () => {
-  const params = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const accessToken = localStorage.getItem("access_token");
   const [loading, setLoading] = useState(true);
+
+  const navigateHandler = async (url) => {
+    const newUrl = await CheckLogin(url);
+    navigate(newUrl);
+  };
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -41,7 +47,12 @@ const NavBar = () => {
       </div>
       <nav>
         <ul className={classes.navLists}>
-          <NavLink to={""} className={classes.link}>
+          <div
+            onClick={() => {
+              navigateHandler(" ");
+            }}
+            className={classes.link}
+          >
             <div className={classes.linkTitle}>
               <img src="https://i.postimg.cc/XYZhZYTb/home.png"></img>
               <p>Home</p>
@@ -49,8 +60,13 @@ const NavBar = () => {
             {window.location.pathname === "/" ? (
               <img className={classes.activeImg} src={dotImg}></img>
             ) : null}
-          </NavLink>
-          <NavLink to={"/like"} className={classes.link}>
+          </div>
+          <div
+            onClick={() => {
+              navigateHandler("/like");
+            }}
+            className={classes.link}
+          >
             <div className={classes.linkTitle}>
               <img src="https://i.postimg.cc/8cTv342b/like.png"></img>
               <p>Like</p>
@@ -58,7 +74,7 @@ const NavBar = () => {
             {window.location.pathname === "/like" ? (
               <img className={classes.activeImg} src={dotImg}></img>
             ) : null}
-          </NavLink>
+          </div>
         </ul>
       </nav>
 

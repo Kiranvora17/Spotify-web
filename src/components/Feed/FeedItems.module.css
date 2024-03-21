@@ -1,13 +1,13 @@
 .feedContainer {
   display: flex;
   flex-flow: column;
-  padding: 1rem 1rem 1rem 0rem;
-  margin: 0rem 0rem 1rem;
+  padding: 1rem 0rem 1rem 0rem;
+  margin: 0rem 0.5rem 1rem;
 }
 
 .feedHeading {
-  padding: 0.5rem 0rem 1rem 1.5rem;
-  margin-left: 0.6rem;
+  padding: 0.5rem 0rem 1rem 0.7rem;
+  margin-left: 0.2rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -18,6 +18,7 @@
   border: none;
   color: rgba(255, 255, 255, 0.8);
   font-size: 1rem;
+  padding-right: 1.5rem;
 }
 
 .feedHeading button:hover {

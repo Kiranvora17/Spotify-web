@@ -6,6 +6,7 @@ import search from "../../images/search.png";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
+import CheckLogin from "../../Authorization/CheckLogin";
 
 const SearchBar = () => {
   const navigate = useNavigate();
@@ -20,8 +21,9 @@ const SearchBar = () => {
     }
   }, [window.location.pathname]);
 
-  const navigateHandler = () => {
-    navigate("/me");
+  const navigateHandler = async () => {
+    const newUrl = await CheckLogin("/me");
+    navigate(newUrl);
   };
 
   const backHandler = () => {
@@ -32,9 +34,10 @@ const SearchBar = () => {
     navigate(1);
   };
 
-  const changeHandler = () => {
+  const changeHandler = async () => {
     if (searchref.current.value) {
-      navigate(`/search/${searchref.current.value}`);
+      const newUrl = await CheckLogin(`/search/${searchref.current.value}`);
+      navigate(newUrl);
     }
   };
 

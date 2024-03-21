@@ -2,12 +2,15 @@ import { useNavigate } from "react-router";
 import classes from "./FeedItemsList.module.css";
 
 import play from "../../images/play-feed.png";
+import CheckLogin from "../../Authorization/CheckLogin";
 // import pause from "../../images/pause-feed.png";
 
 const FeedItemsList = (props) => {
   const navigate = useNavigate();
-  const navigateHandler = (type, id) => {
-    navigate(`/${type}/${id}`);
+
+  const navigateHandler = async (type, id) => {
+    const newUrl = await CheckLogin(`/${type}/${id}`);
+    navigate(newUrl);
   };
 
   const clickHandler = (event) => {
@@ -32,7 +35,13 @@ const FeedItemsList = (props) => {
                 className={classes.playpause}
                 src={play}
               ></img>
-              <img className={classes.image} src={`${feed.image}`}></img>
+              <img
+                className={classes.image}
+                style={{
+                  borderRadius: feed.type === "artist" ? "50%" : "12px",
+                }}
+                src={`${feed.image}`}
+              ></img>
             </div>
             <p className={classes.feedName}>
               {feed.name.length > 25

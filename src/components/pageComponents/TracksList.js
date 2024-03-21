@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router";
 
 import classes from "./TracksList.module.css";
+import CheckLogin from "../../Authorization/CheckLogin";
 
 const TracksList = (props) => {
   const navigate = useNavigate();
 
-  const navigateHandler = (type, id) => {
-    navigate(`/${type}/${id}`);
+  const navigateHandler = async (type, id) => {
+    const newUrl = await CheckLogin(`/${type}/${id}`);
+    navigate(newUrl);
   };
 
   return (

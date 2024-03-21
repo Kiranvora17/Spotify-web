@@ -7,14 +7,18 @@ const LikePopular = () => {
 
   return (
     <>
-      <FeedItems
-        disabled={album.items.length > 5 ? false : true}
-        playlist={album}
-      />
-      <FeedItems
-        disabled={playlist.items.length > 5 ? false : true}
-        playlist={playlist}
-      />
+      {album.items.length > 0 && (
+        <FeedItems
+          disabled={album.items.length > 5 ? false : true}
+          playlist={album}
+        />
+      )}
+      {playlist.items.length > 0 && (
+        <FeedItems
+          disabled={playlist.items.length > 5 ? false : true}
+          playlist={playlist}
+        />
+      )}
     </>
   );
 };

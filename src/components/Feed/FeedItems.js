@@ -21,6 +21,8 @@ const FeedItems = (props) => {
       navigate(`feed/${message}`);
     } else if (window.location.pathname === "/like") {
       navigate(`${props.playlist.type}`);
+    } else if (window.location.pathname === "/me") {
+      navigate(`/me/${props.playlist.message}`);
     }
   };
 

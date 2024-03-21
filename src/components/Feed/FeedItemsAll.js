@@ -18,7 +18,7 @@ const FeedItemsAll = () => {
         <h2>{playlist.message}</h2>
       </div>
       <div className={classes.itemContainer}>
-        <FeedItemsList playlist={playlist.items} />
+        <FeedItemsList type={playlist.type} playlist={playlist.items} />
       </div>
     </div>
   );

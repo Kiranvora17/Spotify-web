@@ -17,7 +17,7 @@ const getCode = async () => {
   const redirectUri = "http://localhost:3000/login";
 
   const scope =
-    "user-read-private user-read-email user-read-recently-played user-top-read user-follow-read user-library-read playlist-read-private";
+    "user-read-private user-read-email user-read-recently-played user-top-read user-follow-read user-library-read playlist-read-private user-read-playback-state user-modify-playback-state streaming";
   const authUrl = new URL("https://accounts.spotify.com/authorize");
 
   // generated in the previous step
@@ -77,11 +77,11 @@ const getToken = async (code) => {
 };
 
 const LoginPage = () => {
-  useEffect(() => {
-    const timeStamp = localStorage.getItem("time_stamp");
-    const urlParams = new URLSearchParams(window.location.search);
-    let code = urlParams.get("code");
+  const timeStamp = localStorage.getItem("time_stamp");
+  const urlParams = new URLSearchParams(window.location.search);
+  let code = urlParams.get("code");
 
+  useEffect(() => {
     if (code) {
       getToken(code);
     }
@@ -91,21 +91,23 @@ const LoginPage = () => {
     }
   }, []);
 
-  return (
-    <>
-      <div className={classes.container} />
-      <div className={classes.loginContainer}>
-        <img
-          src={"https://i.postimg.cc/rpKfD16H/Spotify-Logo-RGB-Green.png"}
-          width={250}
-        ></img>
-        <p>Let the Music Play..</p>
-        <button onClick={getCode} className={classes.loginbtn}>
-          Login
-        </button>
-      </div>
-    </>
-  );
+  if (!code || Date.now() - timeStamp > 3500000) {
+    return (
+      <>
+        <div className={classes.container} />
+        <div className={classes.loginContainer}>
+          <img
+            src={"https://i.postimg.cc/rpKfD16H/Spotify-Logo-RGB-Green.png"}
+            width={250}
+          ></img>
+          <p>Let the Music Play..</p>
+          <button onClick={getCode} className={classes.loginbtn}>
+            Login
+          </button>
+        </div>
+      </>
+    );
+  }
 };
 
 export default LoginPage;

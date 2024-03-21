@@ -7,15 +7,17 @@ const Toptracks = () => {
   const playlist = useSelector((state) => state.track.topTracks);
   const track = useSelector((state) => state.track.track);
 
-  return (
-    <div className={classes.itemContainer}>
-      <div className={classes.heading}>
-        <p className={classes.info}>Popular tracks by</p>
-        <p>{track.artists.name}</p>
+  if (playlist.items.length > 0) {
+    return (
+      <div className={classes.itemContainer}>
+        <div className={classes.heading}>
+          <p className={classes.info}>Popular tracks by</p>
+          <p>{track.artists.name}</p>
+        </div>
+        <TracksList playlist={playlist} />
       </div>
-      <TracksList playlist={playlist} />
-    </div>
-  );
+    );
+  }
 };
 
 export default Toptracks;

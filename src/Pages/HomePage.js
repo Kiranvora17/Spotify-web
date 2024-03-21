@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar/NavBar";
 import { Outlet, useNavigate } from "react-router";
 import SearchBar from "../components/SearchBar/SearchBar";
 import { useEffect } from "react";
+import Player from "../Player/Player";
 
 const HomePage = () => {
   const timeStamp = localStorage.getItem("time_stamp");
@@ -29,6 +30,9 @@ const HomePage = () => {
             <div className={classes.main}>
               <Outlet />
             </div>
+          </div>
+          <div className={classes.player}>
+            <Player />
           </div>
         </div>
       </>

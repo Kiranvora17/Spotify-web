@@ -40,21 +40,24 @@ const AlbumsPage = (props) => {
   }, []);
 
   return (
-    <div className={classes.container}>
-      <Heading className={`${album.default}`} playlist={playlist} />
-      <Navigation id={props.id} playlist={playlist} />
-      <TracksList playlist={playlist} />
-      {playlist.artists.name !== "Various Artists" && (
-        <div className={classes.recommend}>
-          <h3 className={classes.recommendtitle}>
-            More by {playlist.artists.name}
-          </h3>
-          <div className={classes.recommendContainer}>
-            {!loading && <RecommendAlbums id={playlist.artists.id} />}
-          </div>
-        </div>
-      )}
-    </div>
+    <>
+      <div className={classes.container}>
+        <Heading className={`${album.default}`} playlist={playlist} />
+        <Navigation id={props.id} playlist={playlist} />
+        <TracksList playlist={playlist} />
+        {playlist.artists.name !== "Various Artists" &&
+          playlist.items.length > 0 && (
+            <div className={classes.recommend}>
+              <h3 className={classes.recommendtitle}>
+                More by {playlist.artists.name}
+              </h3>
+              <div className={classes.recommendContainer}>
+                {!loading && <RecommendAlbums id={playlist.artists.id} />}
+              </div>
+            </div>
+          )}
+      </div>
+    </>
   );
 };
 

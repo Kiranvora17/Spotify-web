@@ -54,6 +54,7 @@ const feedSlice = createSlice({
       state.topArtists.message = "Your Top Artists";
     },
     setFeedAll(state, action) {
+      state.feedAll.type = action.payload.type;
       state.feedAll.items = action.payload.playlist;
       state.feedAll.message = action.payload.message;
     },

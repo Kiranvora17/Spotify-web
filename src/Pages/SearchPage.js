@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import FeedItems from "../components/Feed/FeedItems";
-import FeedArtist from "../components/Feed/FeedArtist";
 import TracksList from "../components/pageComponents/TracksList";
 import classes from "./SearchPage.module.css";
 
@@ -12,13 +11,21 @@ const SearchPage = () => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.itemContainer}>
-        <h3 className={classes.heading}>Popular Tracks</h3>
-        <TracksList playlist={track} />
-      </div>
-      <FeedArtist disabled={true} playlist={artist} />
-      <FeedItems disabled={true} playlist={album} />
-      <FeedItems disabled={true} playlist={playlist} />
+      {track.items.length > 0 && (
+        <div className={classes.itemContainer}>
+          <h3 className={classes.heading}>Popular Tracks</h3>
+          <TracksList playlist={track} />
+        </div>
+      )}
+      {artist.itemsTrim.length > 0 && (
+        <FeedItems disabled={true} playlist={artist} />
+      )}
+      {album.itemsTrim.length > 0 && (
+        <FeedItems disabled={true} playlist={album} />
+      )}
+      {playlist.itemsTrim.length > 0 && (
+        <FeedItems disabled={true} playlist={playlist} />
+      )}
     </div>
   );
 };
