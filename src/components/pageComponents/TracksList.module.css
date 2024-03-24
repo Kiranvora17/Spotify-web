@@ -26,6 +26,10 @@
   cursor: pointer;
 }
 
+.nameActive {
+  color: #1ed760;
+}
+
 .artist:hover {
   cursor: pointer;
   color: rgba(255, 255, 255, 0.8);

@@ -30,6 +30,7 @@ export const artistAction = (data) => {
       image: data.images[0].url,
       name: data.name,
       type: data.type,
+      uri: data.uri,
     };
     dispatch(artistActions.setArtist({ items: artist }));
   };
@@ -68,6 +69,7 @@ export const popularAction = (playlist) => {
         name: item.name,
         type: item.type,
         image: item.album.images[0].url,
+        uri: item.uri,
       };
 
       if (item.album.name) {
@@ -91,6 +93,7 @@ export const PopularReleaseAction = (playlist) => {
         image: item.images[0].url,
         name: item.name,
         type: item.type,
+        uri: item.uri,
       };
 
       filterData.push(obj);
@@ -111,6 +114,7 @@ export const singleAction = (playlist) => {
         image: item.images[0].url,
         name: item.name,
         type: item.type,
+        uri: item.uri,
       };
 
       filterData.push(obj);
@@ -131,6 +135,7 @@ export const compilationAction = (playlist) => {
         image: item.images[0].url,
         name: item.name,
         type: item.type,
+        uri: item.uri,
       };
 
       filterData.push(obj);
@@ -152,6 +157,7 @@ export const relatedAction = (playlist) => {
         image: item.images[0]?.url,
         name: item.name,
         type: item.type,
+        uri: item.uri,
       };
 
       if (length < 5) {
@@ -174,6 +180,7 @@ export const appearsOnAction = (playlist) => {
         image: item.images[0].url,
         name: item.name,
         type: item.type,
+        uri: item.uri,
       };
 
       filterData.push(obj);

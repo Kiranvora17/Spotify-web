@@ -91,23 +91,21 @@ const LoginPage = () => {
     }
   }, []);
 
-  if (!code || Date.now() - timeStamp > 3500000) {
-    return (
-      <>
-        <div className={classes.container} />
-        <div className={classes.loginContainer}>
-          <img
-            src={"https://i.postimg.cc/rpKfD16H/Spotify-Logo-RGB-Green.png"}
-            width={250}
-          ></img>
-          <p>Let the Music Play..</p>
-          <button onClick={getCode} className={classes.loginbtn}>
-            Login
-          </button>
-        </div>
-      </>
-    );
-  }
+  return (
+    <>
+      <div className={classes.container} />
+      <div className={classes.loginContainer}>
+        <img
+          src={"https://i.postimg.cc/rpKfD16H/Spotify-Logo-RGB-Green.png"}
+          width={250}
+        ></img>
+        <p>Let the Music Play..</p>
+        <button onClick={getCode} className={classes.loginbtn}>
+          Login
+        </button>
+      </div>
+    </>
+  );
 };
 
 export default LoginPage;

@@ -17,6 +17,7 @@ const albumSlice = createSlice({
       state.albumPlaylist.name = action.payload.name;
       state.albumPlaylist.total_tracks = action.payload.total_tracks;
       state.albumPlaylist.type = action.payload.type;
+      state.albumPlaylist.uri = action.payload.uri;
     },
     setRecommend(state, action) {
       state.recommendAlbum.items = action.payload.playlist;

@@ -62,7 +62,6 @@ const Like = () => {
     return (
       <div className={classes.container}>
         <Heading className={`${likes.like}`} />
-        <Navigation playlist={{ name: "Liked", type: "like" }} />
         <LikeTracks />
         <LikePopular />
       </div>

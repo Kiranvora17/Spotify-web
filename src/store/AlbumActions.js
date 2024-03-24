@@ -31,6 +31,7 @@ export const albumAction = (playList) => {
         track_number:
           item.track_number < 10 ? "0" + item.track_number : item.track_number,
         duration: duration,
+        uri: item.uri,
       };
 
       filterTracks.push(obj);
@@ -45,6 +46,7 @@ export const albumAction = (playList) => {
         name: playList.name,
         total_tracks: playList.total_tracks,
         type: playList.type,
+        uri: playList.uri,
       })
     );
   };
@@ -63,6 +65,7 @@ export const recommendActions = (playlist) => {
         image: item.images[0].url,
         name: item.name,
         type: item.type,
+        uri: item.uri,
       };
 
       filterData.push(obj);

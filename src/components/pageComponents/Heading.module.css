@@ -1,6 +1,6 @@
 .heading {
   background-color: transparent;
-  height: 20rem;
+  height: 19rem;
   padding: 1.5rem 1.5rem 1.2rem 1.5rem;
   display: flex;
   flex-flow: row;
@@ -62,7 +62,7 @@
 .title .titleName {
   /* font-size: var(--heading-font-size); */
   /* font-weight: var(--heading-font-weight); */
-  margin-top: 5rem;
+  margin-top: 3.5rem;
   margin-bottom: 1.5rem;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .default .headingImg {
-  width: 270px;
+  width: 240px;
   border-radius: 12px;
 }
 
@@ -81,7 +81,7 @@
 }
 
 .artist .headingImg {
-  width: 270px;
+  width: 240px;
   border-radius: 50%;
 }
 
@@ -91,7 +91,7 @@
 }
 
 .profile .headingImg {
-  width: 250px;
+  width: 240px;
   border-radius: 50%;
 }
 
@@ -101,7 +101,7 @@
 }
 
 .track .headingImg {
-  width: 220px;
+  width: 200px;
   border-radius: 12px;
 }
 
@@ -111,7 +111,7 @@
 }
 
 .like .headingImg {
-  width: 270px;
+  width: 240px;
   border-radius: 50%;
 }
 

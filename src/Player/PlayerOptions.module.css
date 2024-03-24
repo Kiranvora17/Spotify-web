@@ -1,0 +1,21 @@
+.container {
+  width: 25vw;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container img {
+  margin: 0rem 0.25rem;
+  width: 21px;
+  aspect-ratio: 1;
+  transition: all 0.2s ease-in-out;
+}
+
+.container img:last-child {
+  padding: 0.15rem;
+}
+
+.container img:hover {
+  cursor: pointer;
+  transform: scale(0.9);
+}

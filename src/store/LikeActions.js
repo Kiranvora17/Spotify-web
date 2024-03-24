@@ -32,6 +32,7 @@ export const likeTrackActions = (playlist) => {
         albumType: item.track.album.type,
         albumName: item.track.album.name,
         image: item.track.album.images[0].url,
+        uri: item.track.uri,
       };
       length++;
       filterData.push(obj);
@@ -64,6 +65,7 @@ export const likeAlbumActions = (playlist) => {
         image: item.album.images[0].url,
         type: item.album.type,
         name: item.album.name,
+        uri: item.album.uri,
       };
 
       filterData.push(obj);
@@ -106,6 +108,7 @@ export const likePlaylistActions = (playlist) => {
         image: item.images[0].url,
         name: item.name,
         type: item.type,
+        uri: item.uri,
       };
 
       filterData.push(obj);

@@ -1,9 +1,5 @@
 :root {
   --background: transparent;
-  --heading-font-size: 2.5rem;
-  --heading-font-weight: 500;
-  --heading-image-border-radius: 12px;
-  --heading-image-width: 270px;
 }
 
 * {

@@ -25,6 +25,7 @@ export const trackAction = (playlist) => {
       trackArtist: playlist.artists,
       duration: findDuration(playlist.duration_ms),
       name: playlist.name,
+      uri: playlist.uri,
     };
 
     dispatch(trackActions.setTrack({ track: obj }));
@@ -66,6 +67,7 @@ export const recommendAction = (playlist) => {
         albumType: item.album.type,
         albumId: item.album.id,
         artists: item.artists,
+        uri: item.uri,
       };
 
       filterData.push(obj);
@@ -93,6 +95,7 @@ export const topTracksAction = (playlist) => {
         albumId: item.album.id,
         albumName: item.album.name,
         albumType: item.album.type,
+        uri: item.uri,
       };
       length++;
       filterdata.push(obj);
@@ -112,6 +115,7 @@ export const singleAction = (playlist) => {
         image: item.images[0].url,
         name: item.name,
         type: item.type,
+        uri: item.uri,
       };
 
       filterdata.push(obj);
@@ -131,6 +135,7 @@ export const albumAction = (playlist) => {
         image: item.images[0].url,
         name: item.name,
         type: item.type,
+        uri: item.uri,
       };
 
       filterdata.push(obj);

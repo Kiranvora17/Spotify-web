@@ -28,7 +28,12 @@
   height: 50px;
   border-radius: 50%;
   z-index: 10;
-  transition: all 0.2s ease-in-out;
+  transition: all 200ms ease-in-out;
+}
+
+.playpauseActive {
+  opacity: 1;
+  transform: translateY(-20%);
 }
 
 .feed:hover .playpause {
@@ -46,6 +51,10 @@
   margin-bottom: 0.7rem;
   z-index: 1;
   transition: all 0.3s ease-in-out;
+}
+
+.feed:hover .image {
+  filter: blur(2px);
 }
 
 .feedName {

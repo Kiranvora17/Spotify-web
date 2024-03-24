@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  width: 25vw;
+  height: max-content;
+}
+
+.trackImage {
+  width: 55px;
+  aspect-ratio: 1;
+  border-radius: 9px;
+  margin: 0rem 1rem 0rem 0rem;
+}
+
+.track {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.track .name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0rem;
+}
+
+.track .artist {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.4);
+}

@@ -7,21 +7,30 @@ import hash from "../../images/hash.png";
 import duration from "../../images/duration.png";
 import play from "../../images/play-navigation.png";
 import pause from "../../images/pause-navigation.png";
+import {
+  usePlaybackState,
+  usePlayerDevice,
+  useSpotifyPlayer,
+} from "react-spotify-web-playback-sdk";
 
 const Navigation = (props) => {
   const [isFollow, setIsFollow] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const state = usePlaybackState();
+  const device = usePlayerDevice();
+  const player = useSpotifyPlayer();
+  const accessToken = localStorage.getItem("access_token");
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     const primary = document.getElementById("primary");
     const scrollWatcher = document.getElementById("scroll-data-watcher");
-    const title = document.getElementById("title");
+    const title = document.getElementById("index");
     const itemcontainer = document.getElementById("itemcontainer");
     let navObserverOut;
 
     const navObserver = new IntersectionObserver((entry) => {
       primary.classList.toggle(`${classes.sticky}`, !entry[0].isIntersecting);
+
       {
         (props.playlist?.type === "album" ||
           props.playlist?.type === "playlist") &&
@@ -65,8 +74,46 @@ const Navigation = (props) => {
     };
   }, []);
 
-  const changeSrc = () => {
-    setIsPlaying(!isPlaying);
+  const playTrack = async () => {
+    if (device === null) return;
+    if (state?.track_window.current_track.uri === props.playlist.uri) {
+      player.togglePlay();
+    } else {
+      const request = await fetch(
+        `https://api.spotify.com/v1/me/player/play?device_id=${device.device_id}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            uris: [props.playlist.uri],
+          }),
+        }
+      );
+    }
+  };
+
+  const changePlay = async () => {
+    if (device === null) return;
+    if (state?.context.uri === props.playlist.uri) {
+      player.togglePlay();
+    } else {
+      const request = await fetch(
+        `https://api.spotify.com/v1/me/player/play?device_id=${device.device_id}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            context_uri: `${props.playlist.uri}`,
+          }),
+        }
+      );
+    }
   };
 
   const changeLike = () => {
@@ -81,21 +128,41 @@ const Navigation = (props) => {
     <>
       <div id="scroll-data-watcher"></div>
       <div id="primary" className={classes.navbar}>
-        <img
-          onClick={changeSrc}
-          className={classes.playpause}
-          src={isPlaying ? pause : play}
-        ></img>
-        {props.playlist?.type !== "like" &&
-          props.playlist?.type !== "artist" && (
-            <img
-              className={classes.like}
-              onClick={changeLike}
-              src={like}
-              width={30}
-              height={30}
-            ></img>
-          )}
+        {state?.context.uri && (
+          <img
+            onClick={changePlay}
+            className={classes.playpause}
+            src={
+              state?.context.uri === props.playlist.uri
+                ? state?.paused
+                  ? play
+                  : pause
+                : play
+            }
+          ></img>
+        )}
+        {!state?.context.uri && (
+          <img
+            onClick={playTrack}
+            className={classes.playpause}
+            src={
+              state?.track_window.current_track.uri === props.playlist.uri
+                ? state?.paused
+                  ? play
+                  : pause
+                : play
+            }
+          ></img>
+        )}
+        {props.playlist?.type !== "artist" && (
+          <img
+            className={classes.like}
+            onClick={changeLike}
+            src={like}
+            width={30}
+            height={30}
+          ></img>
+        )}
         {props.playlist?.type === "artist" && (
           <button onClick={changeFollow} className={classes.follow}>
             {isFollow ? "Following" : "Follow"}
@@ -105,7 +172,7 @@ const Navigation = (props) => {
       </div>
       {(props.playlist?.type === "album" ||
         props.playlist?.type === "playlist") && (
-        <div id="title" className={classes.titlelist}>
+        <div id="index" className={classes.titlelist}>
           <div className={classes.index}>
             <img src={hash} width={18} height={18}></img>
             <p>Title</p>

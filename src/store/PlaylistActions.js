@@ -33,6 +33,7 @@ export const setPlaylistActions = (playlist) => {
         albumName: item.track.album.name,
         albumType: item.track.album.type,
         albumId: item.track.album.id,
+        uri: item.track.uri,
       };
 
       if (item.track.album.name) {
@@ -51,6 +52,7 @@ export const setPlaylistActions = (playlist) => {
         name: playlist.name,
         owner: playlist.owner,
         type: playlist.type,
+        uri: playlist.uri,
       })
     );
   };

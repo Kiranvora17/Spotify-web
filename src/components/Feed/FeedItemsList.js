@@ -3,19 +3,45 @@ import classes from "./FeedItemsList.module.css";
 
 import play from "../../images/play-feed.png";
 import CheckLogin from "../../Authorization/CheckLogin";
-// import pause from "../../images/pause-feed.png";
+import {
+  usePlaybackState,
+  usePlayerDevice,
+  useSpotifyPlayer,
+} from "react-spotify-web-playback-sdk";
+import pause from "../../images/pause-feed.png";
 
 const FeedItemsList = (props) => {
+  const device = usePlayerDevice();
+  const player = useSpotifyPlayer();
+  const state = usePlaybackState();
   const navigate = useNavigate();
+  const accessToken = localStorage.getItem("access_token");
 
   const navigateHandler = async (type, id) => {
     const newUrl = await CheckLogin(`/${type}/${id}`);
     navigate(newUrl);
   };
 
-  const clickHandler = (event) => {
-    event.stopPropagation();
-    console.log("image clicked");
+  const clickHandler = async (uri) => {
+    if (device === null) return;
+    if (state?.context.uri === uri) {
+      player.togglePlay();
+    } else {
+      const request = await fetch(
+        `https://api.spotify.com/v1/me/player/play?device_id=${device.device_id}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            context_uri: `${uri}`,
+            position_ms: 0,
+          }),
+        }
+      );
+    }
   };
 
   return (
@@ -31,9 +57,22 @@ const FeedItemsList = (props) => {
           >
             <div className={classes.feedimage}>
               <img
-                onClick={(event) => clickHandler(event)}
-                className={classes.playpause}
-                src={play}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  clickHandler(feed.uri);
+                }}
+                className={
+                  feed.uri === state?.context.uri
+                    ? `${classes.playpause} ${classes.playpauseActive}`
+                    : `${classes.playpause}`
+                }
+                src={
+                  feed.uri === state?.context.uri
+                    ? state.paused
+                      ? play
+                      : pause
+                    : play
+                }
               ></img>
               <img
                 className={classes.image}

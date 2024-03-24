@@ -1,0 +1,20 @@
+.playerContainer {
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem 1rem;
+  background-color: rgb(128, 128, 128, 0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: pop-up 0.5s ease-in-out forwards;
+}
+
+@keyframes pop-up {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

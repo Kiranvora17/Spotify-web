@@ -12,6 +12,7 @@ export const ProfileArtistsActions = (playlist) => {
         image: item.images[0]?.url,
         name: item.name,
         type: item.type,
+        uri: item.uri,
       };
 
       filterData.push(obj);
@@ -63,6 +64,7 @@ export const profileTracksActions = (playlist) => {
         name: item.name,
         id: item.id,
         type: item.type,
+        uri: item.uri,
       };
 
       filterData.push(obj);
@@ -90,6 +92,7 @@ export const profileFollowingActions = (playlist) => {
         name: item.name,
         type: item.type,
         image: item.images[0].url,
+        uri: item.uri,
       };
 
       filterData.push(obj);

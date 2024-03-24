@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+}
+
+.time {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+}
+
+.btn img {
+  border-radius: 50%;
+  transition: all 0.15s ease-in;
+  margin: 0rem 0.3rem;
+}
+
+.play {
+  width: 35px;
+  aspect-ratio: 1;
+}
+
+.play:hover {
+  cursor: pointer;
+  transform: translateY(-3px);
+}
+
+.navBtn {
+  width: 30px;
+  aspect-ratio: 1;
+}
+
+.navBtn:hover {
+  cursor: pointer;
+  transform: translateY(-3px);
+}

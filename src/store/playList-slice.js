@@ -17,6 +17,7 @@ const playlistSlice = createSlice({
       state.playlist.owner = action.payload.owner;
       state.playlist.type = action.payload.type;
       state.playlist.total_tracks = action.payload.total_tracks;
+      state.playlist.uri = action.payload.uri;
     },
   },
 });

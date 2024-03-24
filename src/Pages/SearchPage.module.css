@@ -1,7 +1,6 @@
 .container {
   margin: 0 0.5rem;
   animation: fade-in 0.6s ease-in-out forwards;
-  margin-bottom: 6rem;
 }
 
 @keyframes fade-in {

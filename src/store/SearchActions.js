@@ -10,6 +10,7 @@ export const searchAlbumActions = (Playlist) => {
         image: item.images[0].url,
         type: item.type,
         id: item.id,
+        uri: item.uri,
       };
 
       filterData.push(obj);
@@ -28,6 +29,7 @@ export const searchPlaylistActions = (playlist) => {
         type: item.type,
         id: item.id,
         image: item.images[0].url,
+        uri: item.uri,
       };
 
       filterData.push(obj);
@@ -47,6 +49,7 @@ export const SearchArtistActions = (playlist) => {
         type: item.type,
         id: item.id,
         image: item.images[0]?.url,
+        uri: item.uri,
       };
       filterData.push(obj);
     }
@@ -87,6 +90,7 @@ export const SearchTrackActions = (playlist) => {
         id: item.id,
         type: item.type,
         name: item.name,
+        uri: item.uri,
       };
 
       filterData.push(obj);

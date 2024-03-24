@@ -71,19 +71,12 @@ const FeedLoad = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    let timer;
     if (!isLoaded) {
       dispatch(feedActions.setIsLoaded());
-      timer = setTimeout(() => {
-        makeApiCall();
-      }, 1000);
+      makeApiCall();
     } else {
       setLoading(false);
     }
-
-    return () => {
-      clearTimeout(timer);
-    };
   }, []);
 
   if (loading) {

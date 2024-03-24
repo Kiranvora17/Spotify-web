@@ -1,7 +1,6 @@
 .container {
   width: 100%;
   margin-top: -1px;
-  padding-bottom: 6rem;
   overflow-y: scroll;
   position: absolute;
   top: 0;

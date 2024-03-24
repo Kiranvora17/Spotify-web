@@ -13,6 +13,7 @@ export const FeaturedActions = (playlists) => {
           description: data.description,
           image: data.images[0].url,
           name: data.name,
+          uri: data.uri,
         };
         if (length < 5) {
           filterDataTrim.push(obj);
@@ -46,6 +47,7 @@ export const newReleasesActions = (playlist) => {
           image: item.images[0].url,
           name: item.name,
           artists: item.artists,
+          uri: item.uri,
         };
 
         if (length < 5) {
@@ -82,6 +84,7 @@ export const recentlyActions = (playlist) => {
           href: item.track.album.href,
           image: item.track.album.images[0].url,
           totalTracks: item.track.album.total_tracks,
+          uri: item.track.album.uri,
         };
         data.push(obj);
       }
@@ -123,6 +126,7 @@ export const topHitsAction = (playlist) => {
           href: item.href,
           image: item.images[0].url,
           name: item.name,
+          uri: item.uri,
         };
 
         filterData.push(obj);
@@ -158,6 +162,7 @@ export const ViralIndiaActions = (playlist) => {
           image: item.images[0].url,
           name: item.name,
           trackHref: item.tracks.href,
+          uri: item.uri,
         };
 
         if (length < 5) {
@@ -191,6 +196,7 @@ export const TopArtistsActions = (playlist) => {
           href: item.href,
           image: item.images[0].url,
           name: item.name,
+          uri: item.uri,
         };
 
         filterData.push(obj);

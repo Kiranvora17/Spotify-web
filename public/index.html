@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="../public/spotify.png" />
+    <link rel="icon" href="./spotify.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -32,7 +32,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
 
-    <title>Spotify - music for everyone</title>
+    <title id="title">Spotify - music for everyone</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -47,42 +47,5 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script src="https://sdk.scdn.co/spotify-player.js"></script>
-    <script>
-      window.onSpotifyWebPlaybackSDKReady = () => {
-        // console.log("Spotify Web Playback SDK is ready!");
-        const token = localStorage.getItem("access_token");
-        const player = new Spotify.Player({
-          name: "Web Playback SDK Quick Start Player",
-          getOAuthToken: (cb) => {
-            cb(token);
-          },
-          volume: 0.5,
-        });
-
-        player.addListener("ready", ({ device_id }) => {
-          console.log("Ready with Device ID", device_id);
-        });
-
-        // Not Ready
-        player.addListener("not_ready", ({ device_id }) => {
-          console.log("Device ID has gone offline", device_id);
-        });
-
-        player.addListener("initialization_error", ({ message }) => {
-          console.error(message);
-        });
-
-        player.addListener("authentication_error", ({ message }) => {
-          console.error(message);
-        });
-
-        player.addListener("account_error", ({ message }) => {
-          console.error(message);
-        });
-
-        player.connect();
-      };
-    </script>
   </body>
 </html>
