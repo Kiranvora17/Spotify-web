@@ -1,20 +1,31 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 
 import classes from "./Navigation.module.css";
 import like from "../../images/like.png";
+import liked from "../../images/liked.png";
 import hash from "../../images/hash.png";
 import duration from "../../images/duration.png";
-import play from "../../images/play-navigation.png";
-import pause from "../../images/pause-navigation.png";
+import play from "../../images/play-feed.png";
+import pause from "../../images/pause-feed.png";
 import {
   usePlaybackState,
   usePlayerDevice,
   useSpotifyPlayer,
 } from "react-spotify-web-playback-sdk";
+import { useDispatch, useSelector } from "react-redux";
+import { likeActions } from "../../store/like-slice";
+import {
+  modifyAlbum,
+  modifyArtist,
+  modifyPlaylist,
+  modifyTrack,
+} from "../StateModify/Modify";
+import { libraryActions } from "../../store/library-slice";
 
 const Navigation = (props) => {
   const [isFollow, setIsFollow] = useState(false);
+  const dispatch = useDispatch();
+  const ids = useSelector((state) => state.like.ids);
   const state = usePlaybackState();
   const device = usePlayerDevice();
   const player = useSpotifyPlayer();
@@ -22,6 +33,8 @@ const Navigation = (props) => {
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
+    setIsFollow(ids.find((id) => id === props.playlist.id));
+    setIsLiked(ids.find((id) => id === props.playlist.id));
     const primary = document.getElementById("primary");
     const scrollWatcher = document.getElementById("scroll-data-watcher");
     const title = document.getElementById("index");
@@ -97,7 +110,10 @@ const Navigation = (props) => {
 
   const changePlay = async () => {
     if (device === null) return;
-    if (state?.context.uri === props.playlist.uri) {
+    if (
+      state?.context.uri === props.playlist.uri ||
+      state?.track_window.current_track.album.uri === props.playlist.uri
+    ) {
       player.togglePlay();
     } else {
       const request = await fetch(
@@ -117,23 +133,70 @@ const Navigation = (props) => {
   };
 
   const changeLike = () => {
-    setIsLiked(!isLiked);
+    if (isLiked) {
+      if (props.playlist.type === "album") {
+        modifyAlbum("DELETE", props.playlist.id);
+        dispatch(likeActions.removeids({ id: props.playlist.id }));
+      } else if (props.playlist.type === "playlist") {
+        modifyPlaylist("DELETE", props.playlist.id);
+        dispatch(likeActions.removeids({ id: props.playlist.id }));
+      } else if (props.playlist.type === "track") {
+        modifyTrack("DELETE", props.playlist.id);
+        dispatch(likeActions.removeids({ id: props.playlist.id }));
+        dispatch(likeActions.removeTrackids({ id: props.playlist.id }));
+      }
+      setIsLiked(!liked);
+    } else {
+      if (props.playlist.type === "album") {
+        modifyAlbum("PUT", props.playlist.id);
+        dispatch(likeActions.addids({ id: props.playlist.id }));
+      } else if (props.playlist.type === "playlist") {
+        modifyPlaylist("PUT", props.playlist.id);
+        dispatch(likeActions.addids({ id: props.playlist.id }));
+      } else if (props.playlist.type === "track") {
+        modifyTrack("PUT", props.playlist.id);
+        dispatch(likeActions.addids({ id: props.playlist.id }));
+        dispatch(likeActions.addTrackids({ id: props.playlist.id }));
+      }
+      setIsLiked(!isLiked);
+    }
   };
 
   const changeFollow = () => {
-    setIsFollow(!isFollow);
+    if (isFollow) {
+      modifyArtist("DELETE", props.playlist.id);
+      dispatch(likeActions.removeids({ id: props.playlist.id }));
+      dispatch(libraryActions.removeItem({ id: props.playlist.id }));
+      setIsFollow(!isFollow);
+    } else if (!isFollow) {
+      modifyArtist("PUT", props.playlist.id);
+      dispatch(likeActions.addids({ id: props.playlist.id }));
+      dispatch(
+        libraryActions.addItem({
+          item: {
+            id: props.playlist.id,
+            type: props.playlist.type,
+            href: props.playlist.href,
+            name: props.playlist.name,
+            image: props.playlist.image,
+          },
+        })
+      );
+      setIsFollow(!isFollow);
+    }
   };
 
   return (
     <>
       <div id="scroll-data-watcher"></div>
       <div id="primary" className={classes.navbar}>
-        {state?.context.uri && (
+        {props.playlist.type !== "track" && (
           <img
             onClick={changePlay}
             className={classes.playpause}
             src={
-              state?.context.uri === props.playlist.uri
+              state?.context.uri === props.playlist.uri ||
+              state?.track_window.current_track.album.uri === props.playlist.uri
                 ? state?.paused
                   ? play
                   : pause
@@ -141,7 +204,7 @@ const Navigation = (props) => {
             }
           ></img>
         )}
-        {!state?.context.uri && (
+        {props.playlist.type === "track" && (
           <img
             onClick={playTrack}
             className={classes.playpause}
@@ -158,7 +221,7 @@ const Navigation = (props) => {
           <img
             className={classes.like}
             onClick={changeLike}
-            src={like}
+            src={isLiked ? liked : like}
             width={30}
             height={30}
           ></img>

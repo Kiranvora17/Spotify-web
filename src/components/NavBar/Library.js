@@ -2,9 +2,10 @@ import { useSelector } from "react-redux";
 import classes from "./Library.module.css";
 import { useNavigate } from "react-router";
 import CheckLogin from "../../Authorization/CheckLogin";
+import { memo } from "react";
 
 const Library = () => {
-  const library = useSelector((state) => state.feed.library);
+  const library = useSelector((state) => state.library.library);
   const navigate = useNavigate();
 
   const navigateHandler = async (type, id) => {

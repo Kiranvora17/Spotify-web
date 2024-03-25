@@ -1,44 +1,32 @@
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import classes from "./NavBar.module.css";
 import dotImg from "../../images/dot.png";
 import Library from "./Library";
-import { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { libraryActions } from "../../store/FeedActions";
+import { useEffect, useState } from "react";
 import CheckLogin from "../../Authorization/CheckLogin";
+import useFetch from "../../Hooks/FetchHook";
+import { libraryAction } from "../../store/libraryActions";
 
 const NavBar = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const accessToken = localStorage.getItem("access_token");
   const [loading, setLoading] = useState(true);
+
+  const isLoaded = useFetch([
+    {
+      url: "https://api.spotify.com/v1/me/following?type=artist",
+      saveData: libraryAction,
+    },
+  ]);
+
+  useEffect(() => {
+    if (isLoaded) setLoading(true);
+    else setLoading(false);
+  }, [isLoaded]);
 
   const navigateHandler = async (url) => {
     const newUrl = await CheckLogin(url);
     navigate(newUrl);
   };
-
-  const fetchData = useCallback(async () => {
-    setLoading(true);
-    const request = await fetch(
-      "https://api.spotify.com/v1/me/following?type=artist",
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-    const response = await request.json();
-    dispatch(libraryActions(response));
-    setLoading(false);
-  }, [accessToken]);
-
-  useEffect(() => {
-    if (accessToken) {
-      fetchData();
-    }
-  }, []);
 
   return (
     <>

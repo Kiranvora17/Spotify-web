@@ -50,11 +50,9 @@ export const profileTracksActions = (playlist) => {
   return (dispatch) => {
     const filterData = [],
       filterDataTrim = [];
-    let length = 1;
 
     for (const item of playlist.items) {
       const obj = {
-        track_number: length < 10 ? "0" + length : length,
         duration: findDuration(item.duration_ms),
         albumId: item.album.id,
         image: item.album.images[0].url,

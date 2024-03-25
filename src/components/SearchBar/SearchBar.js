@@ -11,6 +11,7 @@ import CheckLogin from "../../Authorization/CheckLogin";
 const SearchBar = () => {
   const navigate = useNavigate();
   const searchref = useRef();
+
   const me = useSelector((state) => state.profile.me);
 
   useEffect(() => {
@@ -34,11 +35,17 @@ const SearchBar = () => {
     navigate(1);
   };
 
-  const changeHandler = async () => {
-    if (searchref.current.value) {
-      const newUrl = await CheckLogin(`/search/${searchref.current.value}`);
-      navigate(newUrl);
-    }
+  const changeHandler = () => {
+    const timer = setTimeout(async () => {
+      if (searchref.current.value) {
+        const newUrl = await CheckLogin(`/search/${searchref.current.value}`);
+        navigate(newUrl);
+      }
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
   };
 
   return (
@@ -59,11 +66,12 @@ const SearchBar = () => {
           <img src={search} width={20} height={20}></img>
           <input
             ref={searchref}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                changeHandler();
-              }
-            }}
+            onChange={changeHandler}
+            // onKeyDown={(e) => {
+            //   if (e.key === "Enter") {
+            //     changeHandler();
+            //   }
+            // }}
             className={classes.search}
             type="text"
             placeholder="What would you like to listen today?"

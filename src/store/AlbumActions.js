@@ -1,4 +1,3 @@
-import { useParams } from "react-router";
 import { albumActions } from "./album-slice";
 
 const findDuration = (duration) => {
@@ -28,8 +27,6 @@ export const albumAction = (playList) => {
         artists: item.artists,
         trackHref: item.href,
         name: item.name,
-        track_number:
-          item.track_number < 10 ? "0" + item.track_number : item.track_number,
         duration: duration,
         uri: item.uri,
       };
@@ -47,6 +44,7 @@ export const albumAction = (playList) => {
         total_tracks: playList.total_tracks,
         type: playList.type,
         uri: playList.uri,
+        id: playList.id,
       })
     );
   };
@@ -54,7 +52,6 @@ export const albumAction = (playList) => {
 
 export const recommendActions = (playlist) => {
   return (dispatch) => {
-    // const params = useParams();
     const filterData = [];
 
     for (const item of playlist.items) {

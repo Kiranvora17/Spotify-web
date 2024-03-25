@@ -5,6 +5,7 @@ const initialState = {
   artists: {},
   tracks: {},
   following: {},
+  library: {},
 };
 
 const profileSlice = createSlice({

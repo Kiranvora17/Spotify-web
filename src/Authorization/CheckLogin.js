@@ -11,7 +11,7 @@ const CheckLogin = (url) => {
 
   if (difference <= 3500000) {
     return url;
-  } else if (difference > 3500000 && difference < 3600000) {
+  } else if (difference > 3500000 && difference < 4000000) {
     generateToken();
   } else {
     return `/login`;

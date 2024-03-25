@@ -18,14 +18,12 @@ const findDuration = (duration) => {
 export const setPlaylistActions = (playlist) => {
   return (dispatch) => {
     const filterData = [];
-    let length = 1;
 
     for (const item of playlist.tracks.items) {
       const duration = findDuration(item.track.duration_ms);
       const obj = {
         duration: duration,
         artists: item.track.artists,
-        track_number: length < 10 ? "0" + length : length,
         id: item.track.id,
         type: item.track.type,
         image: item.track.album.images[0]?.url,

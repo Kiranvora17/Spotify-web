@@ -8,7 +8,6 @@ import {
   searchPlaylistActions,
 } from "../../store/SearchActions";
 import SearchPage from "../../Pages/SearchPage";
-import Loading from "../Loading";
 
 const Search = () => {
   const [loading, setLoading] = useState(true);
@@ -41,9 +40,6 @@ const Search = () => {
   }, [params.string]);
 
   if (!loading) return <SearchPage />;
-  else if (loading) {
-    return <Loading />;
-  }
 };
 
 export default Search;

@@ -11,6 +11,7 @@ import Like from "./components/Like/Like";
 import Profile from "./components/Profile/Profile";
 import LoginPage from "./Pages/LoginPage";
 import Search from "./components/SearchBar/Search";
+import { useEffect } from "react";
 
 function App() {
   const router = createBrowserRouter([

@@ -1,0 +1,15 @@
+.animate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: pop-up 0.4s ease-in forwards;
+}
+
+@keyframes pop-up {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

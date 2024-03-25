@@ -39,15 +39,15 @@ const TracksList = (props) => {
 
   return (
     <div id="itemcontainer" className={classes.itemContainer}>
-      {props.playlist.items.map((item) => {
+      {props.playlist.items.map((item, index) => {
         return (
           <div
             onClick={() => playHandler(item.uri)}
-            key={item.track_number}
+            key={item.id}
             className={classes.list}
           >
             <div className={classes.listindex}>
-              <p>{item.track_number}</p>
+              <p>{index < 9 ? "0" + (index + 1) : index + 1}</p>
               {props.playlist.type !== "album" && (
                 <img src={item.image} width={48} height={48}></img>
               )}

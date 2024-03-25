@@ -6,12 +6,15 @@ import TracksList from "../pageComponents/TracksList";
 const PopularTracks = () => {
   const playlist = useSelector((state) => state.artist.popularTracks);
 
-  return (
-    <div className={classes.itemContainer}>
-      <h3 className={classes.heading}>Popular Tracks</h3>
-      <TracksList type={"artist"} playlist={playlist} />
-    </div>
-  );
+  if (Object.keys(playlist).length === 0) return null;
+  else {
+    return (
+      <div className={classes.itemContainer}>
+        <h3 className={classes.heading}>Popular Tracks</h3>
+        <TracksList type={"artist"} playlist={playlist} />
+      </div>
+    );
+  }
 };
 
 export default PopularTracks;

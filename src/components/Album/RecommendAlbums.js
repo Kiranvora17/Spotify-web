@@ -7,7 +7,10 @@ const RecommendAlbums = (props) => {
     (item) => item.id !== props.id
   );
 
-  return <FeedItemsList playlist={filterRecommend} />;
+  if (Object.keys(recommend).length === 0) return null;
+  else {
+    return <FeedItemsList playlist={filterRecommend} />;
+  }
 };
 
 export default RecommendAlbums;

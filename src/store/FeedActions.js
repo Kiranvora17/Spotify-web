@@ -215,23 +215,3 @@ export const TopArtistsActions = (playlist) => {
     }
   };
 };
-
-export const libraryActions = (playlist) => {
-  return (dispatch) => {
-    const filterData = [];
-
-    for (const item of playlist.artists.items) {
-      const obj = {
-        id: item.id,
-        type: item.type,
-        href: item.href,
-        name: item.name,
-        image: item.images[0].url,
-        type: item.type,
-      };
-      filterData.push(obj);
-    }
-
-    dispatch(feedActions.setLibrary({ playlist: filterData }));
-  };
-};

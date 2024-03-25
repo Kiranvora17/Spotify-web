@@ -76,11 +76,9 @@ const findDuration = (duration) => {
 export const SearchTrackActions = (playlist) => {
   return (dispatch) => {
     const filterData = [];
-    let length = 1;
 
     for (const item of playlist.items) {
       const obj = {
-        track_number: length < 10 ? "0" + length : length,
         albumName: item.album.name,
         albumType: item.album.type,
         albumId: item.album.id,

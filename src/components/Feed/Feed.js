@@ -11,23 +11,26 @@ const Feed = () => {
   const viral = useSelector((state) => state.feed.viralIndia);
   const topArtists = useSelector((state) => state.feed.topArtists);
 
-  return (
-    <div className={classes.container}>
-      <div className={classes.containeralign}>
-        {recentlyPlayed.items.length > 0 && (
-          <FeedItems playlist={recentlyPlayed} />
-        )}
+  if (Object.keys(recentlyPlayed).length === 0) return;
+  else {
+    return (
+      <div className={classes.container}>
+        <div className={classes.containeralign}>
+          {recentlyPlayed.items.length > 0 && (
+            <FeedItems playlist={recentlyPlayed} />
+          )}
+        </div>
+        <div className={classes.containeralign}>
+          <FeedItems playlist={featuredPlaylist} />
+        </div>
+        <FeedItems playlist={newReleases} />
+        <FeedItems playlist={topHits} />
+        <FeedItems playlist={viral} />
+        <FeedItems playlist={topArtists} />
+        <div className={classes.footer}>made with ❤️ by Kiran Vora</div>
       </div>
-      <div className={classes.containeralign}>
-        <FeedItems playlist={featuredPlaylist} />
-      </div>
-      <FeedItems playlist={newReleases} />
-      <FeedItems playlist={topHits} />
-      <FeedItems playlist={viral} />
-      <FeedItems playlist={topArtists} />
-      <div className={classes.footer}>made with ❤️ by Kiran Vora</div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Feed;

@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isLoaded: false,
-  lastVisited: "/",
   recentlyPlayed: {},
   featuredPlaylist: {},
   newReleases: {},
@@ -10,19 +8,12 @@ const initialState = {
   viralIndia: {},
   topArtists: {},
   feedAll: {},
-  library: {},
 };
 
 const feedSlice = createSlice({
   name: "feed",
   initialState: initialState,
   reducers: {
-    setIsLoaded(state) {
-      state.isLoaded = !state.isLoaded;
-    },
-    setLastVisited(state, action) {
-      state.lastVisited = action.payload;
-    },
     setRecentlyplayed(state, action) {
       state.recentlyPlayed.items = action.payload.playlist;
       state.recentlyPlayed.itemsTrim = action.payload.playlistTrim;
@@ -57,9 +48,6 @@ const feedSlice = createSlice({
       state.feedAll.type = action.payload.type;
       state.feedAll.items = action.payload.playlist;
       state.feedAll.message = action.payload.message;
-    },
-    setLibrary(state, action) {
-      state.library.items = action.payload.playlist;
     },
   },
 });

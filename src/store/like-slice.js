@@ -4,9 +4,8 @@ const initialState = {
   tracks: {},
   tracksIds: [],
   playlist: {},
-  playlistIds: [],
   album: {},
-  albumIds: {},
+  ids: [],
 };
 
 const likeSlice = createSlice({
@@ -25,17 +24,36 @@ const likeSlice = createSlice({
       state.album.message = "Followed Albums";
       state.album.type = "album";
     },
-    setAlbumIds(state, action) {
-      state.albumIds = action.payload.ids;
-    },
     setPlaylist(state, action) {
       state.playlist.items = action.payload.playlist;
       state.playlist.itemsTrim = action.payload.playlistTrim;
       state.playlist.message = "Followed Playlists";
       state.playlist.type = "playlist";
     },
-    setPlaylistIds(state, action) {
-      state.playlistIds = action.payload.ids;
+    setIds(state, action) {
+      state.ids = [...state.ids, ...action.payload.ids];
+    },
+    removeids(state, action) {
+      state.ids = state.ids.filter((id) => id !== action.payload.id);
+    },
+    addids(state, action) {
+      state.ids = [...state.ids, action.payload.id];
+    },
+    addTrackids(state, action) {
+      state.tracksIds = [...state.tracksIds, action.payload.id];
+    },
+    removeTrackids(state, action) {
+      state.tracksIds = state.tracksIds.filter(
+        (id) => id !== action.payload.id
+      );
+    },
+    addTracks(state, action) {
+      state.tracks.items = [action.payload.track, ...state.tracks.items];
+    },
+    removeTracks(state, action) {
+      state.tracks.items = state.tracks.items.filter(
+        (item) => item.id !== action.payload.id
+      );
     },
   },
 });

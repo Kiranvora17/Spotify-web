@@ -5,6 +5,7 @@ import TracksList from "../pageComponents/TracksList";
 const LikeTracks = () => {
   const playlist = useSelector((state) => state.like.tracks);
 
+  if (Object.keys(playlist).length === 0) return null;
   if (playlist.items.length > 0) {
     return (
       <div className={classes.itemContainer}>

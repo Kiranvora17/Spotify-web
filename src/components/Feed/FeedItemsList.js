@@ -24,7 +24,10 @@ const FeedItemsList = (props) => {
 
   const clickHandler = async (uri) => {
     if (device === null) return;
-    if (state?.context.uri === uri) {
+    if (
+      state?.context.uri === uri ||
+      uri === state?.track_window.current_track.album.uri
+    ) {
       player.togglePlay();
     } else {
       const request = await fetch(
@@ -62,12 +65,14 @@ const FeedItemsList = (props) => {
                   clickHandler(feed.uri);
                 }}
                 className={
-                  feed.uri === state?.context.uri
+                  feed.uri === state?.context.uri ||
+                  feed.uri === state?.track_window.current_track.album.uri
                     ? `${classes.playpause} ${classes.playpauseActive}`
                     : `${classes.playpause}`
                 }
                 src={
-                  feed.uri === state?.context.uri
+                  feed.uri === state?.context.uri ||
+                  feed.uri === state?.track_window.current_track.album.uri
                     ? state.paused
                       ? play
                       : pause

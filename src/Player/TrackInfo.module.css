@@ -1,7 +1,9 @@
 .container {
   display: flex;
-  width: 25vw;
+  width: 30vw;
   height: max-content;
+  display: flex;
+  align-items: center;
 }
 
 .trackImage {
@@ -18,12 +20,44 @@
 }
 
 .track .name {
+  width: fit-content;
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.2rem 0rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.track .name:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .track .artist {
   font-size: 0.65rem;
   color: rgba(255, 255, 255, 0.4);
+}
+
+.artistname {
+  transition: all 0.2s ease-in-out;
+}
+
+.artistname:hover {
+  color: white;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.like {
+  margin: 0.8rem 1.2rem;
+  transition: all 0.2s ease;
+}
+
+.like img {
+  width: 25px;
+  aspect-ratio: 1;
+}
+
+.like:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }

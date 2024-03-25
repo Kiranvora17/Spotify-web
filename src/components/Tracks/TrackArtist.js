@@ -11,25 +11,28 @@ const TrackArtist = () => {
     navigate(`/${type}/${id}`);
   };
 
-  return (
-    <>
-      {artists.items.map((item) => (
-        <div
-          onClick={() => {
-            navigateHandler(item.type, item.id);
-          }}
-          key={item.id}
-          className={classes.container}
-        >
-          <img src={item.image}></img>
-          <div className={classes.info}>
-            <p className={classes.type}>{item.type}</p>
-            <p className={classes.name}>{item.name}</p>
+  if (Object.keys(artists).length === 0) return null;
+  else {
+    return (
+      <>
+        {artists.items.map((item) => (
+          <div
+            onClick={() => {
+              navigateHandler(item.type, item.id);
+            }}
+            key={item.id}
+            className={classes.container}
+          >
+            <img src={item.image}></img>
+            <div className={classes.info}>
+              <p className={classes.type}>{item.type}</p>
+              <p className={classes.name}>{item.name}</p>
+            </div>
           </div>
-        </div>
-      ))}
-    </>
-  );
+        ))}
+      </>
+    );
+  }
 };
 
 export default TrackArtist;

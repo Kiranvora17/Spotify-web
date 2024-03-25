@@ -6,7 +6,6 @@ import {
 } from "../Authorization/CodeVerifier";
 
 import classes from "./Loginpage.module.css";
-import GetRefreshToken from "../Authorization/RefreshToken";
 
 const getCode = async () => {
   const codeVerifier = generateRandomString(64);
@@ -17,7 +16,7 @@ const getCode = async () => {
   const redirectUri = "http://localhost:3000/login";
 
   const scope =
-    "user-read-private user-read-email user-read-recently-played user-top-read user-follow-read user-library-read playlist-read-private user-read-playback-state user-modify-playback-state streaming";
+    "user-read-private user-read-email user-read-recently-played user-top-read user-follow-read user-library-read playlist-read-private user-read-playback-state user-modify-playback-state streaming user-library-modify playlist-modify-private playlist-modify-public user-follow-modify";
   const authUrl = new URL("https://accounts.spotify.com/authorize");
 
   // generated in the previous step
@@ -64,14 +63,6 @@ const getToken = async (code) => {
   localStorage.setItem("time_stamp", Date.now());
   localStorage.setItem("access_token", response.access_token);
   localStorage.setItem("refresh_token", response.refresh_token);
-
-  setInterval(() => {
-    const generate = async () => {
-      await GetRefreshToken();
-      localStorage.setItem("time_stamp", Date.now());
-    };
-    generate();
-  }, 3500000);
 
   window.location.href = "http://localhost:3000/";
 };

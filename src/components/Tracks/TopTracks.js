@@ -7,6 +7,9 @@ const Toptracks = () => {
   const playlist = useSelector((state) => state.track.topTracks);
   const track = useSelector((state) => state.track.track);
 
+  if (Object.keys(playlist).length === 0 || Object.keys(track).length === 0)
+    return null;
+
   if (playlist.items.length > 0) {
     return (
       <div className={classes.itemContainer}>

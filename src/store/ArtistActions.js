@@ -54,12 +54,10 @@ const findDuration = (duration) => {
 export const popularAction = (playlist) => {
   return (dispatch) => {
     const filterData = [];
-    let length = 1;
 
     for (const item of playlist.tracks) {
       const duration = findDuration(item.duration_ms);
       const obj = {
-        track_number: length < 10 ? "0" + length : length,
         albumName: item.album.name,
         albumType: item.album.type,
         albumId: item.album.id,

@@ -26,6 +26,7 @@ export const trackAction = (playlist) => {
       duration: findDuration(playlist.duration_ms),
       name: playlist.name,
       uri: playlist.uri,
+      id: playlist.id,
     };
 
     dispatch(trackActions.setTrack({ track: obj }));
@@ -53,11 +54,9 @@ export const trackArtistAction = (playlist) => {
 export const recommendAction = (playlist) => {
   return (dispatch) => {
     const filterData = [];
-    let length = 1;
 
     for (const item of playlist.tracks) {
       const obj = {
-        track_number: length < 10 ? "0" + length : length,
         duration: findDuration(item.duration_ms),
         id: item.id,
         type: item.type,
@@ -81,11 +80,9 @@ export const recommendAction = (playlist) => {
 export const topTracksAction = (playlist) => {
   return (dispatch) => {
     const filterdata = [];
-    let length = 1;
 
     for (const item of playlist.tracks) {
       const obj = {
-        track_number: length < 10 ? "0" + length : length,
         duration: findDuration(item.duration_ms),
         name: item.name,
         id: item.id,
