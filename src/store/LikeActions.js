@@ -19,23 +19,24 @@ export const likeTrackActions = (playlist) => {
   return (dispatch) => {
     const filterData = [];
 
-    for (const item of playlist.items) {
-      const obj = {
-        artists: item.track.artists,
-        duration: findDuration(item.track.duration_ms),
-        id: item.track.id,
-        name: item.track.name,
-        type: item.track.type,
-        albumId: item.track.album.id,
-        albumType: item.track.album.type,
-        albumName: item.track.album.name,
-        image: item.track.album.images[0].url,
-        uri: item.track.uri,
-      };
-      length++;
-      filterData.push(obj);
+    if (playlist) {
+      for (const item of playlist?.items) {
+        const obj = {
+          artists: item.track.artists,
+          duration: findDuration(item.track.duration_ms),
+          id: item.track.id,
+          name: item.track.name,
+          type: item.track.type,
+          albumId: item.track.album.id,
+          albumType: item.track.album.type,
+          albumName: item.track.album.name,
+          image: item.track.album.images[0].url,
+          uri: item.track.uri,
+        };
+        filterData.push(obj);
+      }
+      dispatch(likeActions.setTracks({ playlist: filterData }));
     }
-    dispatch(likeActions.setTracks({ playlist: filterData }));
   };
 };
 
@@ -43,12 +44,14 @@ export const trackIdsActions = (playlist) => {
   return (dispatch) => {
     const ids = [];
 
-    for (const item of playlist.items) {
-      ids.push(item.track.id);
-    }
+    if (playlist) {
+      for (const item of playlist?.items) {
+        ids.push(item.track.id);
+      }
 
-    dispatch(likeActions.setTracksIds({ ids: ids }));
-    dispatch(likeActions.setIds({ ids: ids }));
+      dispatch(likeActions.setTracksIds({ ids: ids }));
+      dispatch(likeActions.setIds({ ids: ids }));
+    }
   };
 };
 
@@ -58,27 +61,29 @@ export const likeAlbumActions = (playlist) => {
       filterDataTrim = [];
     let length = 0;
 
-    for (const item of playlist.items) {
-      const obj = {
-        id: item.album.id,
-        image: item.album.images[0].url,
-        type: item.album.type,
-        name: item.album.name,
-        uri: item.album.uri,
-      };
+    if (playlist) {
+      for (const item of playlist?.items) {
+        const obj = {
+          id: item.album.id,
+          image: item.album.images[0].url,
+          type: item.album.type,
+          name: item.album.name,
+          uri: item.album.uri,
+        };
 
-      filterData.push(obj);
-      if (length < 5) {
-        filterDataTrim.push(obj);
-        length++;
+        filterData.push(obj);
+        if (length < 5) {
+          filterDataTrim.push(obj);
+          length++;
+        }
       }
+      dispatch(
+        likeActions.setAlbum({
+          playlist: filterData,
+          playlistTrim: filterDataTrim,
+        })
+      );
     }
-    dispatch(
-      likeActions.setAlbum({
-        playlist: filterData,
-        playlistTrim: filterDataTrim,
-      })
-    );
   };
 };
 
@@ -86,11 +91,13 @@ export const albumIdsActions = (playlist) => {
   return (dispatch) => {
     const ids = [];
 
-    for (const item of playlist.items) {
-      ids.push(item.album.id);
-    }
+    if (playlist) {
+      for (const item of playlist?.items) {
+        ids.push(item.album.id);
+      }
 
-    dispatch(likeActions.setIds({ ids: ids }));
+      dispatch(likeActions.setIds({ ids: ids }));
+    }
   };
 };
 
@@ -100,29 +107,31 @@ export const likePlaylistActions = (playlist) => {
       filterDataTrim = [];
     let length = 0;
 
-    for (const item of playlist.items) {
-      const obj = {
-        description: item.description,
-        id: item.id,
-        image: item.images[0].url,
-        name: item.name,
-        type: item.type,
-        uri: item.uri,
-      };
+    if (playlist) {
+      for (const item of playlist?.items) {
+        const obj = {
+          description: item.description,
+          id: item.id,
+          image: item.images[0].url,
+          name: item.name,
+          type: item.type,
+          uri: item.uri,
+        };
 
-      filterData.push(obj);
-      if (length < 5) {
-        filterDataTrim.push(obj);
-        length++;
+        filterData.push(obj);
+        if (length < 5) {
+          filterDataTrim.push(obj);
+          length++;
+        }
       }
-    }
 
-    dispatch(
-      likeActions.setPlaylist({
-        playlist: filterData,
-        playlistTrim: filterDataTrim,
-      })
-    );
+      dispatch(
+        likeActions.setPlaylist({
+          playlist: filterData,
+          playlistTrim: filterDataTrim,
+        })
+      );
+    }
   };
 };
 
@@ -130,11 +139,13 @@ export const playlistIdsActions = (playlist) => {
   return (dispatch) => {
     const ids = [];
 
-    for (const item of playlist.items) {
-      ids.push(item.id);
-    }
+    if (playlist) {
+      for (const item of playlist?.items) {
+        ids.push(item.id);
+      }
 
-    dispatch(likeActions.setIds({ ids: ids }));
+      dispatch(likeActions.setIds({ ids: ids }));
+    }
   };
 };
 
@@ -142,9 +153,11 @@ export const ArtistIdsActions = (playlist) => {
   return (dispatch) => {
     const ids = [];
 
-    for (const item of playlist.artists.items) {
-      ids.push(item.id);
+    if (playlist) {
+      for (const item of playlist?.artists.items) {
+        ids.push(item.id);
+      }
+      dispatch(likeActions.setIds({ ids: ids }));
     }
-    dispatch(likeActions.setIds({ ids: ids }));
   };
 };

@@ -26,7 +26,7 @@ const FeedItemsList = (props) => {
     if (device === null) return;
     if (
       state?.context.uri === uri ||
-      uri === state?.track_window.current_track.album.uri
+      uri === state?.track_window?.current_track?.album?.uri
     ) {
       player.togglePlay();
     } else {
@@ -65,8 +65,7 @@ const FeedItemsList = (props) => {
                   clickHandler(feed.uri);
                 }}
                 className={
-                  feed.uri === state?.context.uri ||
-                  feed.uri === state?.track_window.current_track.album.uri
+                  feed.uri === state?.context.uri
                     ? `${classes.playpause} ${classes.playpauseActive}`
                     : `${classes.playpause}`
                 }

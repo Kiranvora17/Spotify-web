@@ -18,10 +18,6 @@ const Like = () => {
 
   const requestedArray = [
     {
-      url: `https://api.spotify.com/v1/me/tracks?market=IN&limit=50`,
-      saveData: likeTrackActions,
-    },
-    {
       url: `https://api.spotify.com/v1/me/albums?limit=50&market=IN`,
       saveData: likeAlbumActions,
     },
@@ -46,8 +42,6 @@ const Like = () => {
         <LikePopular />
       </div>
     );
-  } else {
-    return <Loading />;
   }
 };
 

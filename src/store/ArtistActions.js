@@ -71,7 +71,6 @@ export const popularAction = (playlist) => {
       };
 
       if (item.album.name) {
-        length++;
         filterData.push(obj);
       }
     }

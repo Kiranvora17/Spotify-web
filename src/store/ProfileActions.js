@@ -66,7 +66,6 @@ export const profileTracksActions = (playlist) => {
       };
 
       filterData.push(obj);
-      length++;
     }
 
     dispatch(

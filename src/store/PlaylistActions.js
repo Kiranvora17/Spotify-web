@@ -35,7 +35,6 @@ export const setPlaylistActions = (playlist) => {
       };
 
       if (item.track.album.name) {
-        length++;
         filterData.push(obj);
       }
     }

@@ -5,10 +5,37 @@
 }
 
 .container img {
-  margin: 0rem 0.25rem;
-  width: 21px;
+  margin: 0rem 0.75rem;
+  width: 25px;
   aspect-ratio: 1;
   transition: all 0.2s ease-in-out;
+}
+
+.dialog {
+  height: 10vh;
+  display: none;
+  position: absolute;
+  bottom: 12%;
+  right: 1%;
+  background-color: rgba(28, 28, 28, 1);
+  border-radius: 12px;
+  animation: fade-in 0.2s ease forwards;
+  z-index: 10;
+}
+
+@keyframes fade-in {
+  from {
+    transform: scale(0);
+    height: 0;
+  }
+  to {
+    transform: scale(1);
+    height: fit-content;
+  }
+}
+
+.dialogActive {
+  display: block;
 }
 
 .container img:last-child {

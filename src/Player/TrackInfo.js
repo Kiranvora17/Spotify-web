@@ -19,12 +19,11 @@ const TrackInfo = () => {
   const dispatch = useDispatch();
   const player = usePlaybackState();
   const [isLiked, setIsLiked] = useState(false);
-  const tracks = useSelector((state) => state.like.tracks);
   const ids = useSelector((state) => state.like.tracksIds);
 
   useEffect(() => {
-    setIsLiked(ids.find((id) => id === player.track_window.current_track.id));
-  }, [player]);
+    setIsLiked(ids.find((id) => id === player?.track_window.current_track.id));
+  }, [player, ids]);
 
   const albumHandler = (id) => {
     const newUrl = CheckLogin(`/album/${id}`);

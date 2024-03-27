@@ -70,7 +70,6 @@ export const recommendAction = (playlist) => {
       };
 
       filterData.push(obj);
-      length++;
     }
 
     dispatch(trackActions.setRecommend({ playlist: filterData }));
@@ -94,7 +93,6 @@ export const topTracksAction = (playlist) => {
         albumType: item.album.type,
         uri: item.uri,
       };
-      length++;
       filterdata.push(obj);
     }
 

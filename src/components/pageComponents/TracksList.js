@@ -7,10 +7,16 @@ import {
   usePlayerDevice,
 } from "react-spotify-web-playback-sdk";
 
-import playTrack from "../../images/play-track.png";
+import like from "../../images/like.png";
+import liked from "../../images/liked.png";
+import { useDispatch, useSelector } from "react-redux";
+import { modifyTrack } from "../StateModify/Modify";
+import { likeActions } from "../../store/like-slice";
 
 const TracksList = (props) => {
   const accessToken = localStorage.getItem("access_token");
+  const ids = useSelector((state) => state.like.tracksIds);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const device = usePlayerDevice();
   const playstate = usePlaybackState();
@@ -35,6 +41,20 @@ const TracksList = (props) => {
         }),
       }
     );
+  };
+
+  const changeLike = (id) => {
+    if (ids.includes(id)) {
+      modifyTrack("DELETE", id);
+      dispatch(likeActions.removeids({ id: id }));
+      dispatch(likeActions.removeTrackids({ id: id }));
+      dispatch(likeActions.removeTracks({ id: id }));
+    } else if (!ids.includes(id)) {
+      modifyTrack("PUT", id);
+      dispatch(likeActions.addids({ id: id }));
+      dispatch(likeActions.addTrackids({ id: id }));
+      // dispatch(likeActions.addTracks({ id: id }));
+    }
   };
 
   return (
@@ -94,19 +114,35 @@ const TracksList = (props) => {
               </div>
             </div>
             {props.playlist.type !== "album" && (
-              <p
+              <div className={classes.albumContainer}>
+                <p
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigateHandler(item.albumType, item.albumId);
+                  }}
+                  className={classes.album}
+                >
+                  {item.albumName.length > 30
+                    ? item.albumName.slice(0, 30) + "..."
+                    : item.albumName}
+                </p>
+              </div>
+            )}
+            <div className={classes.imgContainer}>
+              <img
                 onClick={(e) => {
                   e.stopPropagation();
-                  navigateHandler(item.albumType, item.albumId);
+                  changeLike(item.id);
                 }}
-                className={classes.album}
-              >
-                {item.albumName.length > 30
-                  ? item.albumName.slice(0, 30) + "..."
-                  : item.albumName}
-              </p>
-            )}
-            <p className={classes.duration}>{item.duration}</p>
+                className={
+                  ids.includes(item.id)
+                    ? ` ${classes.likeImg} ${classes.likeImgActive}`
+                    : `${classes.likeImg}`
+                }
+                src={ids.includes(item.id) ? liked : like}
+              ></img>
+              <p className={classes.duration}>{item.duration}</p>
+            </div>
           </div>
         );
       })}

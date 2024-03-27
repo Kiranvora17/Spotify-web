@@ -8,6 +8,7 @@ import likeSlice from "./like-slice";
 import profileSlice from "./profile-slice";
 import searchslice from "./search-slice";
 import librarySlice from "./library-slice";
+import PlayerSlice from "./player-slice";
 
 const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
     profile: profileSlice.reducer,
     search: searchslice.reducer,
     library: librarySlice.reducer,
+    player: PlayerSlice.reducer,
   },
 });
 

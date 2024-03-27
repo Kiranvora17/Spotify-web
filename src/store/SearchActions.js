@@ -92,7 +92,6 @@ export const SearchTrackActions = (playlist) => {
       };
 
       filterData.push(obj);
-      length++;
     }
 
     dispatch(searchActions.setTracks({ playlist: filterData }));

@@ -116,19 +116,16 @@ const Navigation = (props) => {
     ) {
       player.togglePlay();
     } else {
-      const request = await fetch(
-        `https://api.spotify.com/v1/me/player/play?device_id=${device.device_id}`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            context_uri: `${props.playlist.uri}`,
-          }),
-        }
-      );
+      const request = await fetch(`https://api.spotify.com/v1/me/player/play`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          context_uri: `${props.playlist.uri}`,
+        }),
+      });
     }
   };
 
@@ -196,7 +193,8 @@ const Navigation = (props) => {
             className={classes.playpause}
             src={
               state?.context.uri === props.playlist.uri ||
-              state?.track_window.current_track.album.uri === props.playlist.uri
+              state?.track_window?.current_track.album.uri ===
+                props.playlist.uri
                 ? state?.paused
                   ? play
                   : pause

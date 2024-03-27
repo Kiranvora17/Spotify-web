@@ -36,8 +36,12 @@
   text-decoration: underline rgba(255, 255, 255, 0.8);
 }
 
-.album {
+.albumContainer {
   width: 26.5vw;
+}
+
+.album {
+  width: fit-content;
   color: rgba(255, 255, 255, 0.5);
 }
 
@@ -66,4 +70,30 @@
 
 .list .duration {
   color: rgba(255, 255, 255, 0.5);
+}
+
+.imgContainer {
+  display: flex;
+  align-items: center;
+}
+
+.likeImg {
+  opacity: 0;
+  width: 24px;
+  aspect-ratio: 1;
+  margin-right: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.likeImg:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.likeImgActive {
+  opacity: 1;
+}
+
+.list:hover .likeImg {
+  opacity: 1;
 }
