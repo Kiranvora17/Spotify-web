@@ -1,5 +1,6 @@
 .container {
-  margin: 0.5rem 0.5rem 0rem 0.5rem;
+  /* margin: 0.5rem 0.5rem 0rem 0.5rem; */
+  margin: .5rem;
   animation: fade-in 1s forwards;
 }
 
@@ -12,9 +13,9 @@
   }
 }
 
-.containeralign {
+/* .containeralign {
   padding-left: 0.5rem;
-}
+} */
 
 .footer {
   display: flex;

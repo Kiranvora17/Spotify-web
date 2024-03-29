@@ -32,9 +32,7 @@ const FeedItems = (props) => {
         <h2>{props.playlist.message}</h2>
         {!props.disabled && <button onClick={showAllHandler}>Show all</button>}
       </div>
-      <div className={classes.itemContainer}>
         <FeedItemsList playlist={props.playlist.itemsTrim} />
-      </div>
     </div>
   );
 };

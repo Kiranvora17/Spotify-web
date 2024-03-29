@@ -29,6 +29,7 @@ const findDuration = (duration) => {
 const PlayerTrack = () => {
   const player = usePlaybackState({ interval: true });
   const track = useSpotifyPlayer();
+  
   if (!player) return null;
 
   if (!player?.paused) {

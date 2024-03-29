@@ -1,13 +1,13 @@
 .feedContainer {
   display: flex;
   flex-flow: column;
-  padding: 1rem 0rem 1rem 0rem;
-  margin: 0rem 0.5rem 1rem;
+  padding: 1rem;
+  margin-top: .5rem ;
 }
 
 .feedHeading {
   padding: 0.5rem 0rem 1rem 0.7rem;
-  margin-left: 0.2rem;
+  margin-left: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -25,9 +25,4 @@
   text-decoration: underline solid white;
   text-decoration-thickness: 1.5px;
   cursor: pointer;
-}
-
-.itemContainer {
-  display: flex;
-  flex-wrap: wrap;
 }

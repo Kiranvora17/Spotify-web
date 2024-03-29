@@ -39,10 +39,10 @@ const usePLayerDevices = () => {
 
     const isActive = devices.filter((device) => device.is_active === true);
 
-    if (isActive.length === 0 && device?.status === "ready") {
+    if (isActive.length === 0 && device?.status === 'ready') {
       transferPlayback(device?.device_id);
-      dispatch(PlayerAction.setActivedevice({ id: device?.device_id }));
-    } else if (isActive.length !== 0 && device?.status === "ready") {
+      dispatch(PlayerAction.setActivedevice({ id: device?.device_id}));
+    } else if (isActive.length !== 0 && device?.status === 'ready') {
       dispatch(PlayerAction.setActivedevice({ id: isActive[0].id }));
     }
     localStorage.setItem("current_device", device?.device_id);

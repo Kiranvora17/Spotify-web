@@ -48,7 +48,7 @@ const FeedItemsList = (props) => {
   };
 
   return (
-    <>
+    <div className={classes.gridContainer}>
       {props.playlist?.map((feed) => {
         return (
           <div
@@ -65,7 +65,7 @@ const FeedItemsList = (props) => {
                   clickHandler(feed.uri);
                 }}
                 className={
-                  feed.uri === state?.context.uri
+                  feed.uri === state?.context.uri || feed.uri === state?.track_window.current_track.album.uri
                     ? `${classes.playpause} ${classes.playpauseActive}`
                     : `${classes.playpause}`
                 }
@@ -99,7 +99,7 @@ const FeedItemsList = (props) => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 

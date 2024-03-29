@@ -46,14 +46,10 @@ const Feed = () => {
   else {
     return (
       <div className={classes.container}>
-        <div className={classes.containeralign}>
           {recentlyPlayed.items.length > 0 && (
             <FeedItems playlist={recentlyPlayed} />
           )}
-        </div>
-        <div className={classes.containeralign}>
           <FeedItems playlist={featuredPlaylist} />
-        </div>
         <FeedItems playlist={newReleases} />
         <FeedItems playlist={topHits} />
         <FeedItems playlist={viral} />

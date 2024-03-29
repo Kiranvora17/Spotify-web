@@ -4,9 +4,12 @@
   padding: 0.5rem 1rem;
   background-color: rgb(128, 128, 128, 0.15);
   border-radius: 12px;
+  display: flex;
+  align-items: center;
 }
 
 .animate {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
