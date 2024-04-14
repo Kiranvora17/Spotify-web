@@ -6,6 +6,10 @@
   margin: 0rem 0.75rem;
 }
 
+.slideBar:hover {
+  cursor: pointer;
+}
+
 .progressed {
   height: 4px;
   border-radius: 3px;
@@ -14,11 +18,11 @@
 }
 
 .slideBar:hover .progressed {
+  cursor: pointer;
   background-color: #1ed760;
 }
 
 .slideBar:hover .progressed::after {
-  cursor: pointer;
   position: absolute;
   right: 0;
   top: -2px;

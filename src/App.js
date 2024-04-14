@@ -11,6 +11,7 @@ import Like from "./components/Like/Like";
 import Profile from "./components/Profile/Profile";
 import LoginPage from "./Pages/LoginPage";
 import Search from "./components/SearchBar/Search";
+import Queue from "./PlayerComponents/Queue";
 
 function App() {
   const router = createBrowserRouter([
@@ -29,6 +30,7 @@ function App() {
         { path: "me", element: <Profile /> },
         { path: "me/:type", element: <FeedItemsAll /> },
         { path: "search/:string", element: <Search /> },
+        { path: 'queue', element: <Queue />},
       ],
     },
     {

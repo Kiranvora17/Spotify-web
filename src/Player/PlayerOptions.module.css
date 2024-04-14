@@ -17,7 +17,7 @@
   position: absolute;
   bottom: 12%;
   right: 1%;
-  background-color: rgba(28, 28, 28, 1);
+  background-color: black;
   border-radius: 12px;
   animation: fade-in 0.2s ease forwards;
   z-index: 10;

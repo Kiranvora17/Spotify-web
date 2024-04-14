@@ -1,0 +1,9 @@
+.itemContainer {
+    margin: 2rem 1rem 1rem 1rem;
+  }
+  
+  .itemContainer .heading {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 1rem 0rem 1rem 1.5rem;
+  }

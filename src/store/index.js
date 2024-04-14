@@ -9,6 +9,7 @@ import profileSlice from "./profile-slice";
 import searchslice from "./search-slice";
 import librarySlice from "./library-slice";
 import PlayerSlice from "./player-slice";
+import QueueSlice from "./queue-slice";
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     search: searchslice.reducer,
     library: librarySlice.reducer,
     player: PlayerSlice.reducer,
+    queue: QueueSlice.reducer,
   },
 });
 

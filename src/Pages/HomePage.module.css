@@ -7,7 +7,7 @@
   background-size: cover;
   background-position: center;
   opacity: 0.2;
-  filter: blur(40px);
+  filter: blur(50px);
   background-color: rgb(0, 0, 0);
   transition: all 1s ease-in-out;
   transition-delay: 1s;
@@ -59,7 +59,7 @@
 }
 
 .player {
-  margin: 0 0.5rem 0;
+  margin: 0 0.5rem 0.5rem;
   grid-row: 3/4;
   grid-column: 1/3;
 }

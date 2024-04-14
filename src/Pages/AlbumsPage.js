@@ -26,13 +26,14 @@ const AlbumsPage = (props) => {
     else setLoading(false);
   }, [isLoaded]);
 
+  console.log(playlist);
   return (
     <>
       <div className={classes.container}>
         <Heading className={`${album.default}`} playlist={playlist} />
         <Navigation id={props.id} playlist={playlist} />
         <TracksList playlist={playlist} />
-        {playlist.artists.name !== "Various Artists" &&
+        {playlist.artists.name !== "Various Artists" ||
           playlist.items.length > 0 && (
             <div className={classes.recommend}>
               <h3 className={classes.recommendtitle}>

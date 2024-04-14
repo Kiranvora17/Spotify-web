@@ -1,5 +1,6 @@
 .itemContainer {
   margin: 0rem 1rem;
+  padding: .5rem;
 }
 
 .list {
@@ -87,9 +88,9 @@
 
 .likeImg:hover {
   cursor: pointer;
-  transform: scale(1.1);
+  transform: translateY(-2px);
 }
-
+ 
 .likeImgActive {
   opacity: 1;
 }
