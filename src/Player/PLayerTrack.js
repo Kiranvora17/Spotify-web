@@ -10,9 +10,6 @@ import pause from "../../src/images/pause-player.png";
 import next from "../images/next-player.png";
 import previous from "../images/previous-player.png";
 import Slider from "./Slider";
-import { useDispatch } from "react-redux";
-import { queueActions } from "../store/queue-slice";
-import { current } from "@reduxjs/toolkit";
 
 const findDuration = (duration) => {
   let str = "";
@@ -32,8 +29,7 @@ const findDuration = (duration) => {
 const PlayerTrack = () => {
   const player = usePlaybackState({ interval: true });
   const track = useSpotifyPlayer();
-  const dispatch = useDispatch();
-  
+
   if (!player) return null;
 
   if (!player?.paused) {

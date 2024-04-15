@@ -1,5 +1,13 @@
 :root {
   --background: transparent;
+  --full-screen-background: transparent;
+}
+
+@font-face {
+  font-family: "gotham";
+  src: url("../../Downloads/Gotham-font-family-full/Gotham-font-family/GothamOffice/GothamOffice-Bold.otf")
+    format("truetype"); /* For .ttf file */
+  /* Add additional font properties like font-weight and font-style if needed */
 }
 
 * {
@@ -9,7 +17,7 @@
 }
 
 body {
-  font-family: "Azeret Mono", monospace;
+  font-family: "gotham", monospace;
   background-color: black;
   color: white;
 }

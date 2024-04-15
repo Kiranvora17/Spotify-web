@@ -11,6 +11,8 @@ import Devices from "../PlayerComponents/Device";
 import useAvailableDevice from "../Hooks/AvailableDevice";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import Screen from "../PlayerComponents/Screen";
+import { useFullScreenHandle } from "react-full-screen";
 
 const PlayerOptions = () => {
   const currentDevice = localStorage.getItem("current_device");
@@ -20,9 +22,10 @@ const PlayerOptions = () => {
   const [loading, device] = useAvailableDevice(isActiveDevice);
   const modal = document.getElementById("modal");
   const navigate = useNavigate();
+  const handle = useFullScreenHandle();
 
   useEffect(() => {
-    if(window.location.pathname === '/queue') {
+    if (window.location.pathname === "/queue") {
       setIsActiveQueue(true);
     } else {
       setIsActiveQueue(false);
@@ -40,35 +43,48 @@ const PlayerOptions = () => {
   };
 
   const showQueueHandler = () => {
-    if(!isActiveQueue) {
-      navigate('/queue');
+    if (!isActiveQueue) {
+      navigate("/queue");
       setIsActiveQueue(!isActiveQueue);
     } else {
       navigate(-1);
       setIsActiveQueue(!isActiveQueue);
     }
-  }
+  };
+
+  const showScreenHandler = () => {
+    handle.enter();
+  };
 
   return (
     <>
       <div className={classes.container}>
-        <img onClick={(e) => {
-          e.stopPropagation();
-          showQueueHandler();
-        }} src={isActiveQueue ? queueActive : queue}></img>
+        <img
+          onClick={(e) => {
+            e.stopPropagation();
+            showQueueHandler();
+          }}
+          className={classes.img}
+          src={isActiveQueue ? queueActive : queue}
+        ></img>
         <img
           onClick={(e) => {
             e.stopPropagation();
             showDeviceHandler();
           }}
-          className={classes.device}
+          className={classes.img}
           src={
             isActiveDevice || activeDevice !== currentDevice
               ? devicesActiove
               : devices
           }
         ></img>
-        <img src={fullScreen}></img>
+        <img
+          className={classes.img}
+          onClick={showScreenHandler}
+          src={fullScreen}
+        ></img>
+        <Screen handle={handle} />
       </div>
       <modal
         id="modal"

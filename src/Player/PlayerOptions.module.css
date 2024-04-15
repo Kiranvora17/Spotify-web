@@ -38,11 +38,7 @@
   display: block;
 }
 
-.container img:last-child {
-  padding: 0.15rem;
-}
-
-.container img:hover {
+.container .img:hover {
   cursor: pointer;
   transform: scale(0.9);
 }
