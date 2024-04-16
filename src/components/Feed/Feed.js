@@ -46,15 +46,14 @@ const Feed = () => {
   else {
     return (
       <div className={classes.container}>
-          {recentlyPlayed.items.length > 0 && (
-            <FeedItems playlist={recentlyPlayed} />
-          )}
-          <FeedItems playlist={featuredPlaylist} />
+        {recentlyPlayed.items.length > 0 && (
+          <FeedItems playlist={recentlyPlayed} />
+        )}
+        <FeedItems playlist={featuredPlaylist} />
         <FeedItems playlist={newReleases} />
         <FeedItems playlist={topHits} />
         <FeedItems playlist={viral} />
         <FeedItems playlist={topArtists} />
-        <div className={classes.footer}>made with ❤️ by Kiran Vora</div>
       </div>
     );
   }

@@ -1,6 +1,4 @@
-import {
-  usePlaybackState
-} from "react-spotify-web-playback-sdk";
+import { usePlaybackState } from "react-spotify-web-playback-sdk";
 import classes from "./TrackInfo.module.css";
 import { useNavigate } from "react-router";
 import CheckLogin from "../Authorization/CheckLogin";
@@ -12,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { modifyTrack } from "../components/StateModify/Modify";
 import { likeActions } from "../store/like-slice";
 import { findDuration } from "../store/LikeActions";
-import usePlayerState from "../Hooks/PlayerState";
 
 const TrackInfo = () => {
   const navigate = useNavigate();

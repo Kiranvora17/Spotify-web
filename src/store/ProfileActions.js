@@ -9,7 +9,7 @@ export const ProfileArtistsActions = (playlist) => {
     for (const item of playlist.items) {
       const obj = {
         id: item.id,
-        image: item.images[0]?.url,
+        image: item.images ? item.images[0]?.url : null,
         name: item.name,
         type: item.type,
         uri: item.uri,
@@ -52,20 +52,22 @@ export const profileTracksActions = (playlist) => {
       filterDataTrim = [];
 
     for (const item of playlist.items) {
-      const obj = {
-        duration: findDuration(item.duration_ms),
-        albumId: item.album.id,
-        image: item.album.images[0].url,
-        albumName: item.album.name,
-        albumType: item.album.type,
-        artists: item.artists,
-        name: item.name,
-        id: item.id,
-        type: item.type,
-        uri: item.uri,
-      };
+      if (item.name) {
+        const obj = {
+          duration: findDuration(item.duration_ms),
+          albumId: item.album.id,
+          image: item.album.images ? item.album.images[0].url : null,
+          albumName: item.album.name,
+          albumType: item.album.type,
+          artists: item.artists,
+          name: item.name,
+          id: item.id,
+          type: item.type,
+          uri: item.uri,
+        };
 
-      filterData.push(obj);
+        filterData.push(obj);
+      }
     }
 
     dispatch(
@@ -88,7 +90,7 @@ export const profileFollowingActions = (playlist) => {
         id: item.id,
         name: item.name,
         type: item.type,
-        image: item.images[0].url,
+        image: item.images ? item.images[0].url : null,
         uri: item.uri,
       };
 

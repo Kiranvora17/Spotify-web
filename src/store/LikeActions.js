@@ -1,4 +1,5 @@
 import { likeActions } from "./like-slice";
+import spotify from "../images/default-profile.png";
 
 export const findDuration = (duration) => {
   let str = "";
@@ -21,19 +22,23 @@ export const likeTrackActions = (playlist) => {
 
     if (playlist) {
       for (const item of playlist?.items) {
-        const obj = {
-          artists: item.track.artists,
-          duration: findDuration(item.track.duration_ms),
-          id: item.track.id,
-          name: item.track.name,
-          type: item.track.type,
-          albumId: item.track.album.id,
-          albumType: item.track.album.type,
-          albumName: item.track.album.name,
-          image: item.track.album.images[0].url,
-          uri: item.track.uri,
-        };
-        filterData.push(obj);
+        if (item.track.name) {
+          const obj = {
+            artists: item.track?.artists,
+            duration: findDuration(item.track?.duration_ms),
+            id: item.track?.id,
+            name: item.track?.name,
+            type: item.track?.type,
+            albumId: item.track?.album.id,
+            albumType: item.track?.album.type,
+            albumName: item.track?.album?.name,
+            image: item.track.album?.images
+              ? item.track.album?.images[0]?.url
+              : null,
+            uri: item.track?.uri,
+          };
+          filterData.push(obj);
+        }
       }
       dispatch(likeActions.setTracks({ playlist: filterData }));
     }
@@ -64,11 +69,11 @@ export const likeAlbumActions = (playlist) => {
     if (playlist) {
       for (const item of playlist?.items) {
         const obj = {
-          id: item.album.id,
-          image: item.album.images[0].url,
-          type: item.album.type,
-          name: item.album.name,
-          uri: item.album.uri,
+          id: item.album?.id,
+          image: item.album?.images ? item.album?.images[0]?.url : null,
+          type: item.album?.type,
+          name: item.album?.name,
+          uri: item.album?.uri,
         };
 
         filterData.push(obj);
@@ -108,14 +113,15 @@ export const likePlaylistActions = (playlist) => {
     let length = 0;
 
     if (playlist) {
+      console.log(playlist);
       for (const item of playlist?.items) {
         const obj = {
-          description: item.description,
-          id: item.id,
-          image: item.images[0].url,
-          name: item.name,
-          type: item.type,
-          uri: item.uri,
+          description: item?.description,
+          id: item?.id,
+          image: item.images ? item.images[0]?.url : null,
+          name: item?.name,
+          type: item?.type,
+          uri: item?.uri,
         };
 
         filterData.push(obj);

@@ -14,8 +14,9 @@ const profileSlice = createSlice({
   reducers: {
     setMe(state, action) {
       state.me.name = action.payload.display_name;
-      state.me.imageSmall = action.payload.images[0].url;
-      state.me.image = action.payload.images[1].url;
+      state.me.imageSmall = action.payload.images[0]?.url;
+      state.me.image = action.payload.images[1]?.url;
+      state.me.accountType = action.payload.product;
       state.me.type = "profile";
     },
     setArtists(state, action) {

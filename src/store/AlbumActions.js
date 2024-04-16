@@ -20,18 +20,20 @@ export const albumAction = (playList) => {
     const filterTracks = [];
 
     for (const item of playList.tracks.items) {
-      const duration = findDuration(item.duration_ms);
-      const obj = {
-        id: item.id,
-        type: item.type,
-        artists: item.artists,
-        trackHref: item.href,
-        name: item.name,
-        duration: duration,
-        uri: item.uri,
-      };
+      if (item.name) {
+        const duration = findDuration(item.duration_ms);
+        const obj = {
+          id: item.id,
+          type: item.type,
+          artists: item.artists,
+          trackHref: item.href,
+          name: item.name,
+          duration: duration,
+          uri: item.uri,
+        };
 
-      filterTracks.push(obj);
+        filterTracks.push(obj);
+      }
     }
 
     dispatch(
@@ -39,7 +41,7 @@ export const albumAction = (playList) => {
         artists: playList.artists[0],
         release_date: playList.release_date.substr(0, 4),
         playlist: filterTracks,
-        image: playList.images[0].url,
+        image: playList.images ? playList.images[0].url : null,
         name: playList.name,
         total_tracks: playList.total_tracks,
         type: playList.type,
@@ -59,7 +61,7 @@ export const recommendActions = (playlist) => {
         artists: item.artists[0],
         href: item.href,
         id: item.id,
-        image: item.images[0].url,
+        image: item.images ? item.images[0].url : null,
         name: item.name,
         type: item.type,
         uri: item.uri,

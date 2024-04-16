@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   base64encode,
   generateRandomString,
@@ -58,8 +58,6 @@ const getToken = async (code) => {
   const body = await fetch("https://accounts.spotify.com/api/token", payload);
   const response = await body.json();
 
-  //   removeQueryParameters();
-
   localStorage.setItem("time_stamp", Date.now());
   localStorage.setItem("access_token", response.access_token);
   localStorage.setItem("refresh_token", response.refresh_token);
@@ -89,11 +87,17 @@ const LoginPage = () => {
         <img
           src={"https://i.postimg.cc/rpKfD16H/Spotify-Logo-RGB-Green.png"}
           width={250}
+          style={{ marginBottom: "1rem" }}
         ></img>
-        <p>Let the Music Play..</p>
+        <p style={{ margin: "1.5rem 1.5rem 3rem" }}>Let the Music Play..</p>
         <button onClick={getCode} className={classes.loginbtn}>
           Login
         </button>
+      </div>
+      <div className={classes.disclaimer}>
+        * If you are first time visiting this page, then send your spotify
+        username and registered email id to{" "}
+        <a href="mailto:vorakiran79@gmail.com">vorakiran79@gmail.com</a>
       </div>
     </>
   );

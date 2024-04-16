@@ -20,22 +20,26 @@ export const setPlaylistActions = (playlist) => {
     const filterData = [];
 
     for (const item of playlist.tracks.items) {
-      const duration = findDuration(item.track.duration_ms);
-      const obj = {
-        duration: duration,
-        artists: item.track.artists,
-        id: item.track.id,
-        type: item.track.type,
-        image: item.track.album.images[0]?.url,
-        name: item.track.name,
-        albumName: item.track.album.name,
-        albumType: item.track.album.type,
-        albumId: item.track.album.id,
-        uri: item.track.uri,
-      };
+      if (item.track?.name) {
+        const duration = findDuration(item.track.duration_ms);
+        const obj = {
+          duration: duration,
+          artists: item.track.artists,
+          id: item.track.id,
+          type: item.track.type,
+          image: item.track.album.images
+            ? item.track.album.images[0]?.url
+            : null,
+          name: item.track.name,
+          albumName: item.track.album.name,
+          albumType: item.track.album.type,
+          albumId: item.track.album.id,
+          uri: item.track.uri,
+        };
 
-      if (item.track.album.name) {
-        filterData.push(obj);
+        if (item.track.album.name) {
+          filterData.push(obj);
+        }
       }
     }
 
@@ -45,7 +49,7 @@ export const setPlaylistActions = (playlist) => {
         items: filterData,
         description: playlist.description,
         id: playlist.id,
-        image: playlist.images[0].url,
+        image: playlist.images ? playlist.images[0].url : null,
         name: playlist.name,
         owner: playlist.owner,
         type: playlist.type,

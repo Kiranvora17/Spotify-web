@@ -7,7 +7,7 @@ export const searchAlbumActions = (Playlist) => {
     for (const item of Playlist.items) {
       const obj = {
         name: item.name,
-        image: item.images[0].url,
+        image: item.images ? item.images[0].url : null,
         type: item.type,
         id: item.id,
         uri: item.uri,
@@ -28,7 +28,7 @@ export const searchPlaylistActions = (playlist) => {
         name: item.name,
         type: item.type,
         id: item.id,
-        image: item.images[0].url,
+        image: item.images ? item.images[0].url : null,
         uri: item.uri,
       };
 
@@ -48,7 +48,7 @@ export const SearchArtistActions = (playlist) => {
         name: item.name,
         type: item.type,
         id: item.id,
-        image: item.images[0]?.url,
+        image: item.images ? item.images[0]?.url : null,
         uri: item.uri,
       };
       filterData.push(obj);
@@ -78,20 +78,22 @@ export const SearchTrackActions = (playlist) => {
     const filterData = [];
 
     for (const item of playlist.items) {
-      const obj = {
-        albumName: item.album.name,
-        albumType: item.album.type,
-        albumId: item.album.id,
-        image: item.album.images[0].url,
-        artists: item.artists,
-        duration: findDuration(item.duration_ms),
-        id: item.id,
-        type: item.type,
-        name: item.name,
-        uri: item.uri,
-      };
+      if (item.name) {
+        const obj = {
+          albumName: item.album.name,
+          albumType: item.album.type,
+          albumId: item.album.id,
+          image: item.album.images ? item.album.images[0].url : null,
+          artists: item.artists,
+          duration: findDuration(item.duration_ms),
+          id: item.id,
+          type: item.type,
+          name: item.name,
+          uri: item.uri,
+        };
 
-      filterData.push(obj);
+        filterData.push(obj);
+      }
     }
 
     dispatch(searchActions.setTracks({ playlist: filterData }));

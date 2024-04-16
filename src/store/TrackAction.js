@@ -17,19 +17,21 @@ const findDuration = (duration) => {
 
 export const trackAction = (playlist) => {
   return (dispatch) => {
-    const obj = {
-      artists: playlist.album.artists[0],
-      image: playlist.album.images[0].url,
-      albumName: playlist.album.name,
-      type: playlist.type,
-      trackArtist: playlist.artists,
-      duration: findDuration(playlist.duration_ms),
-      name: playlist.name,
-      uri: playlist.uri,
-      id: playlist.id,
-    };
+    if (playlist.name) {
+      const obj = {
+        artists: playlist.album.artists[0],
+        image: playlist.album.images ? playlist.album.images[0].url : null,
+        albumName: playlist.album.name,
+        type: playlist.type,
+        trackArtist: playlist.artists,
+        duration: findDuration(playlist.duration_ms),
+        name: playlist.name,
+        uri: playlist.uri,
+        id: playlist.id,
+      };
 
-    dispatch(trackActions.setTrack({ track: obj }));
+      dispatch(trackActions.setTrack({ track: obj }));
+    }
   };
 };
 
@@ -42,7 +44,7 @@ export const trackArtistAction = (playlist) => {
         name: item.name,
         id: item.id,
         type: item.type,
-        image: item.images[0]?.url,
+        image: item.images ? item.images[0]?.url : null,
       };
 
       filterData.push(obj);
@@ -56,20 +58,22 @@ export const recommendAction = (playlist) => {
     const filterData = [];
 
     for (const item of playlist.tracks) {
-      const obj = {
-        duration: findDuration(item.duration_ms),
-        id: item.id,
-        type: item.type,
-        name: item.name,
-        image: item.album.images[0].url,
-        albumName: item.album.name,
-        albumType: item.album.type,
-        albumId: item.album.id,
-        artists: item.artists,
-        uri: item.uri,
-      };
+      if (item.name) {
+        const obj = {
+          duration: findDuration(item.duration_ms),
+          id: item.id,
+          type: item.type,
+          name: item.name,
+          image: item.album.images ? item.album.images[0].url : null,
+          albumName: item.album.name,
+          albumType: item.album.type,
+          albumId: item.album.id,
+          artists: item.artists,
+          uri: item.uri,
+        };
 
-      filterData.push(obj);
+        filterData.push(obj);
+      }
     }
 
     dispatch(trackActions.setRecommend({ playlist: filterData }));
@@ -81,19 +85,21 @@ export const topTracksAction = (playlist) => {
     const filterdata = [];
 
     for (const item of playlist.tracks) {
-      const obj = {
-        duration: findDuration(item.duration_ms),
-        name: item.name,
-        id: item.id,
-        type: item.type,
-        artists: item.artists,
-        image: item.album.images[0].url,
-        albumId: item.album.id,
-        albumName: item.album.name,
-        albumType: item.album.type,
-        uri: item.uri,
-      };
-      filterdata.push(obj);
+      if (item.name) {
+        const obj = {
+          duration: findDuration(item.duration_ms),
+          name: item.name,
+          id: item.id,
+          type: item.type,
+          artists: item.artists,
+          image: item.album.images ? item.album.images[0].url : null,
+          albumId: item.album.id,
+          albumName: item.album.name,
+          albumType: item.album.type,
+          uri: item.uri,
+        };
+        filterdata.push(obj);
+      }
     }
 
     dispatch(trackActions.setTopTracks({ playlist: filterdata }));
@@ -107,7 +113,7 @@ export const singleAction = (playlist) => {
     for (const item of playlist.items) {
       const obj = {
         id: item.id,
-        image: item.images[0].url,
+        image: item.images ? item.images[0].url : null,
         name: item.name,
         type: item.type,
         uri: item.uri,
@@ -127,7 +133,7 @@ export const albumAction = (playlist) => {
     for (const item of playlist.items) {
       const obj = {
         id: item.id,
-        image: item.images[0].url,
+        image: item.images ? item.images[0].url : null,
         name: item.name,
         type: item.type,
         uri: item.uri,

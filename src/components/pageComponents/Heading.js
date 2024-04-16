@@ -3,6 +3,7 @@ import classes from "./Heading.module.css";
 
 import verified from "../../images/verified.png";
 import liked from "../../images/likeHeading.png";
+import profile from "../../images/default-profile.png";
 import HeadingFooter from "./HeadingFooter";
 
 const Heading = (props) => {
@@ -28,7 +29,13 @@ const Heading = (props) => {
           onLoad={colorHandler}
           id="albumImage"
           className={classes.headingImg}
-          src={props.playlist?.image ? props.playlist.image : liked}
+          src={
+            props.playlist?.image
+              ? props.playlist.image
+              : props.playlist === undefined
+              ? liked
+              : profile
+          }
           crossOrigin="anonymous"
         ></img>
         <div className={classes.title}>

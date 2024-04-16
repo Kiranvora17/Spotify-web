@@ -11,7 +11,7 @@ export const FeaturedActions = (playlists) => {
           id: data.id,
           type: data.type,
           description: data.description,
-          image: data.images[0].url,
+          image: data.images ? data.images[0].url : null,
           name: data.name,
           uri: data.uri,
         };
@@ -44,7 +44,7 @@ export const newReleasesActions = (playlist) => {
           id: item.id,
           type: item.type,
           href: item.href,
-          image: item.images[0].url,
+          image: item.images ? item.images[0].url : null,
           name: item.name,
           artists: item.artists,
           uri: item.uri,
@@ -82,7 +82,9 @@ export const recentlyActions = (playlist) => {
           name: item.track.album.name,
           artists: item.track.album.artists,
           href: item.track.album.href,
-          image: item.track.album.images[0].url,
+          image: item.track.album.images
+            ? item.track.album.images[0].url
+            : null,
           totalTracks: item.track.album.total_tracks,
           uri: item.track.album.uri,
         };
@@ -124,7 +126,7 @@ export const topHitsAction = (playlist) => {
           id: item.id,
           artists: item.artists,
           href: item.href,
-          image: item.images[0].url,
+          image: item.images ? item.images[0].url : null,
           name: item.name,
           uri: item.uri,
         };
@@ -159,7 +161,7 @@ export const ViralIndiaActions = (playlist) => {
           id: item.id,
           description: item.description,
           href: item.href,
-          image: item.images[0].url,
+          image: item.images ? item.images[0].url : null,
           name: item.name,
           trackHref: item.tracks.href,
           uri: item.uri,
@@ -194,7 +196,7 @@ export const TopArtistsActions = (playlist) => {
           type: item.type,
           id: item.id,
           href: item.href,
-          image: item.images[0].url,
+          image: item.images ? item.images[0].url : null,
           name: item.name,
           uri: item.uri,
         };

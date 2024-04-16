@@ -10,38 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { PlayerAction } from "../store/player-slice";
 
 const Devices = (props) => {
-  const dispatch = useDispatch();
   const activeDevice = useSelector((state) => state.player.activeDevice);
   const currentDevice = localStorage.getItem("current_device");
-  const accessToken = localStorage.getItem("access_token");
-
-  const changeDevice = async (id) => {
-    const request = await fetch("https://api.spotify.com/v1/me/player", {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        device_ids: [id],
-        play: true,
-      }),
-    });
-
-    if (request.ok) {
-      dispatch(PlayerAction.setActivedevice({ id: id }));
-    }
-  };
 
   return props.device.map((device) => {
     return (
-      <div
-        onClick={() => {
-          changeDevice(device.id);
-        }}
-        key={device.id}
-        className={classes.list}
-      >
+      <div key={device.id} className={classes.list}>
         <img
           src={
             device.type === "Computer"

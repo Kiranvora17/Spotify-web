@@ -50,54 +50,57 @@ const FeedItemsList = (props) => {
   return (
     <div className={classes.gridContainer}>
       {props.playlist?.map((feed) => {
-        return (
-          <div
-            onClick={() => {
-              navigateHandler(feed.type, feed.id);
-            }}
-            className={classes.feed}
-            key={feed.id}
-          >
-            <div className={classes.feedimage}>
-              <img
-                onClick={(event) => {
-                  event.stopPropagation();
-                  clickHandler(feed.uri);
-                }}
-                className={
-                  feed.uri === state?.context.uri || feed.uri === state?.track_window.current_track.album.uri
-                    ? `${classes.playpause} ${classes.playpauseActive}`
-                    : `${classes.playpause}`
-                }
-                src={
-                  feed.uri === state?.context.uri ||
-                  feed.uri === state?.track_window.current_track.album.uri
-                    ? state.paused
-                      ? play
-                      : pause
-                    : play
-                }
-              ></img>
-              <img
-                className={classes.image}
-                style={{
-                  borderRadius: feed.type === "artist" ? "50%" : "12px",
-                }}
-                src={`${feed.image}`}
-              ></img>
+        if (feed.image) {
+          return (
+            <div
+              onClick={() => {
+                navigateHandler(feed.type, feed.id);
+              }}
+              className={classes.feed}
+              key={feed.id}
+            >
+              <div className={classes.feedimage}>
+                <img
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    clickHandler(feed.uri);
+                  }}
+                  className={
+                    feed.uri === state?.context.uri ||
+                    feed.uri === state?.track_window.current_track.album.uri
+                      ? `${classes.playpause} ${classes.playpauseActive}`
+                      : `${classes.playpause}`
+                  }
+                  src={
+                    feed.uri === state?.context.uri ||
+                    feed.uri === state?.track_window.current_track.album.uri
+                      ? state.paused
+                        ? play
+                        : pause
+                      : play
+                  }
+                ></img>
+                <img
+                  className={classes.image}
+                  style={{
+                    borderRadius: feed.type === "artist" ? "50%" : "12px",
+                  }}
+                  src={`${feed.image}`}
+                ></img>
+              </div>
+              <p className={classes.feedName}>
+                {feed.name.length > 25
+                  ? feed.name.slice(0, 25) + "..."
+                  : feed.name}
+              </p>
+              <p className={classes.feedDescription}>
+                {feed.description && feed.description.length > 60
+                  ? feed.description.slice(0, 60) + " ..."
+                  : feed.description}
+              </p>
             </div>
-            <p className={classes.feedName}>
-              {feed.name.length > 25
-                ? feed.name.slice(0, 25) + "..."
-                : feed.name}
-            </p>
-            <p className={classes.feedDescription}>
-              {feed.description && feed.description.length > 60
-                ? feed.description.slice(0, 60) + " ..."
-                : feed.description}
-            </p>
-          </div>
-        );
+          );
+        }
       })}
     </div>
   );

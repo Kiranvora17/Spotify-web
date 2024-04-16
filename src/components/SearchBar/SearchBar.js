@@ -8,6 +8,8 @@ import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import CheckLogin from "../../Authorization/CheckLogin";
 
+import profile from "../../images/default-profile.png";
+
 const SearchBar = () => {
   const navigate = useNavigate();
   const searchref = useRef();
@@ -67,11 +69,6 @@ const SearchBar = () => {
           <input
             ref={searchref}
             onChange={changeHandler}
-            // onKeyDown={(e) => {
-            //   if (e.key === "Enter") {
-            //     changeHandler();
-            //   }
-            // }}
             className={classes.search}
             type="text"
             placeholder="What would you like to listen today?"
@@ -79,15 +76,11 @@ const SearchBar = () => {
         </div>
       </div>
       {me.name ? (
-        <div onClick={navigateHandler} className={classes.profileContainer}>
-          <p>{me.name}</p>
-          <img
-            src={
-              me.imageSmall
-                ? me.imageSmall
-                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk1wr1yrOBQiwirwFdBeIUAeIU9vPg09-NpaXWEipuyQ&s"
-            }
-          ></img>
+        <div>
+          <div onClick={navigateHandler} className={classes.profileContainer}>
+            <p>{me.name}</p>
+            <img src={me.imageSmall ? me.imageSmall : profile}></img>
+          </div>
         </div>
       ) : null}
     </div>

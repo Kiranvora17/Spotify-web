@@ -27,7 +27,7 @@ export const artistAction = (data) => {
     const artist = {
       followers: followers,
       id: data.id,
-      image: data.images[0].url,
+      image: data.images ? data.images[0].url : null,
       name: data.name,
       type: data.type,
       uri: data.uri,
@@ -56,22 +56,24 @@ export const popularAction = (playlist) => {
     const filterData = [];
 
     for (const item of playlist.tracks) {
-      const duration = findDuration(item.duration_ms);
-      const obj = {
-        albumName: item.album.name,
-        albumType: item.album.type,
-        albumId: item.album.id,
-        artists: item.artists,
-        duration: duration,
-        id: item.id,
-        name: item.name,
-        type: item.type,
-        image: item.album.images[0].url,
-        uri: item.uri,
-      };
+      if (item.name) {
+        const duration = findDuration(item.duration_ms);
+        const obj = {
+          albumName: item.album.name,
+          albumType: item.album.type,
+          albumId: item.album.id,
+          artists: item.artists,
+          duration: duration,
+          id: item.id,
+          name: item.name,
+          type: item.type,
+          image: item.album.images ? item.album.images[0].url : null,
+          uri: item.uri,
+        };
 
-      if (item.album.name) {
-        filterData.push(obj);
+        if (item.album.name) {
+          filterData.push(obj);
+        }
       }
     }
 
@@ -87,7 +89,7 @@ export const PopularReleaseAction = (playlist) => {
       const obj = {
         description: "album",
         id: item.id,
-        image: item.images[0].url,
+        image: item.images ? item.images[0].url : null,
         name: item.name,
         type: item.type,
         uri: item.uri,
@@ -108,7 +110,7 @@ export const singleAction = (playlist) => {
       const obj = {
         description: "single",
         id: item.id,
-        image: item.images[0].url,
+        image: item.images ? item.images[0].url : null,
         name: item.name,
         type: item.type,
         uri: item.uri,
@@ -129,7 +131,7 @@ export const compilationAction = (playlist) => {
       const obj = {
         description: "compilation",
         id: item.id,
-        image: item.images[0].url,
+        image: item.images ? item.images[0].url : null,
         name: item.name,
         type: item.type,
         uri: item.uri,
@@ -151,7 +153,7 @@ export const relatedAction = (playlist) => {
       const obj = {
         description: "Artist",
         id: item.id,
-        image: item.images[0]?.url,
+        image: item.images ? item.images[0]?.url : null,
         name: item.name,
         type: item.type,
         uri: item.uri,
@@ -174,7 +176,7 @@ export const appearsOnAction = (playlist) => {
     for (const item of playlist.items) {
       const obj = {
         id: item.id,
-        image: item.images[0].url,
+        image: item.images ? item.images[0].url : null,
         name: item.name,
         type: item.type,
         uri: item.uri,

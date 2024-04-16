@@ -24,3 +24,16 @@
     opacity: 1;
   }
 }
+
+.playerError {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.playerError p {
+  color: #1ed760;
+  font-size: 1.5rem;
+}

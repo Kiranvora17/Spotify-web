@@ -10,7 +10,7 @@ export const libraryAction = (playlist) => {
         type: item.type,
         href: item.href,
         name: item.name,
-        image: item.images[0].url,
+        image: item.images ? item.images[0].url : null,
       };
       filterData.push(obj);
     }
