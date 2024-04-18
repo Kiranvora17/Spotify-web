@@ -47,7 +47,7 @@ const TrackPage = (props) => {
     },
   ];
 
-  const isLoaded = useFetch(requestedArray);
+  const [isLoaded] = useFetch(requestedArray);
 
   useEffect(() => {
     if (isLoaded) setLoading(true);

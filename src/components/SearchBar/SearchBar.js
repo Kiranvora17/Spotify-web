@@ -50,6 +50,11 @@ const SearchBar = () => {
     };
   };
 
+  const backToLoginHandler = () => {
+    localStorage.removeItem("time_stamp");
+    window.location.reload();
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.searchContainer}>
@@ -76,10 +81,16 @@ const SearchBar = () => {
         </div>
       </div>
       {me.name ? (
-        <div>
+        <div className={classes.profile}>
           <div onClick={navigateHandler} className={classes.profileContainer}>
             <p>{me.name}</p>
             <img src={me.imageSmall ? me.imageSmall : profile}></img>
+          </div>
+          <div
+            onClick={backToLoginHandler}
+            className={classes.profileContainer}
+          >
+            <p>Log out</p>
           </div>
         </div>
       ) : null}

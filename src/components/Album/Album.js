@@ -9,7 +9,7 @@ const Album = () => {
   const params = useParams();
   const [loading, setLoading] = useState(true);
 
-  const isLoaded = useFetch(
+  const [isLoaded, error] = useFetch(
     [
       {
         url: `https://api.spotify.com/v1/albums/${params.albumId}?market=IN`,
@@ -24,7 +24,7 @@ const Album = () => {
     else setLoading(false);
   }, [isLoaded]);
 
-  if (!loading) {
+  if (!loading && !error) {
     return <AlbumsPage id={params.albumId} />;
   }
 };

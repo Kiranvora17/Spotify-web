@@ -30,7 +30,7 @@ function App() {
         { path: "me", element: <Profile /> },
         { path: "me/:type", element: <FeedItemsAll /> },
         { path: "search/:string", element: <Search /> },
-        { path: 'queue', element: <Queue />},
+        { path: "queue", element: <Queue /> },
       ],
     },
     {

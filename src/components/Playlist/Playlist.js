@@ -8,7 +8,7 @@ const Playlist = () => {
   const params = useParams();
   const [loading, setLoading] = useState(true);
 
-  const isLoaded = useFetch([
+  const [isLoaded, error] = useFetch([
     {
       url: `https://api.spotify.com/v1/playlists/${params.playlistId}?market=IN`,
       saveData: setPlaylistActions,
@@ -20,7 +20,7 @@ const Playlist = () => {
     else setLoading(false);
   }, [isLoaded]);
 
-  if (!loading) {
+  if (!loading && !error) {
     return <PlaylistsPage id={params.playlistId} />;
   }
 };

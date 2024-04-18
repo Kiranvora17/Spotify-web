@@ -5,6 +5,7 @@ const useFetch = (urls, changeTrigger) => {
   const dispatch = useDispatch();
   const accessToken = localStorage.getItem("access_token");
   const [loading, setLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const fetchData = useCallback(
     async (url, saveData) => {
@@ -16,8 +17,15 @@ const useFetch = (urls, changeTrigger) => {
         },
       });
 
-      const response = await request.json();
-      await dispatch(saveData(response));
+      if (!request.ok) {
+        setIsError(true);
+        setLoading(false);
+      }
+
+      if (request.ok) {
+        const response = await request.json();
+        await dispatch(saveData(response));
+      }
       setLoading(false);
     },
     [accessToken, changeTrigger]
@@ -29,7 +37,7 @@ const useFetch = (urls, changeTrigger) => {
     });
   }, [changeTrigger]);
 
-  return loading;
+  return [loading, isError];
 };
 
 export default useFetch;

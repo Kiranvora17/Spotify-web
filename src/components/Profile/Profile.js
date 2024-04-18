@@ -25,14 +25,14 @@ const Profile = () => {
     },
   ];
 
-  const isLoaded = useFetch(requestedArray);
+  const [isLoaded, error] = useFetch(requestedArray);
 
   useEffect(() => {
     if (isLoaded) setLoading(true);
     else setLoading(false);
   }, [isLoaded]);
 
-  if (!loading) {
+  if (!loading && !error) {
     return <ProfilePage />;
   }
 };

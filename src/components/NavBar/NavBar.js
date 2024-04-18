@@ -11,7 +11,7 @@ const NavBar = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
-  const isLoaded = useFetch([
+  const [isLoaded, error] = useFetch([
     {
       url: "https://api.spotify.com/v1/me/following?type=artist",
       saveData: libraryAction,
@@ -66,7 +66,7 @@ const NavBar = () => {
         </ul>
       </nav>
 
-      {!loading && <Library />}
+      {!loading && !error && <Library />}
     </>
   );
 };

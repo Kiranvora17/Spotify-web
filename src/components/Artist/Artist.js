@@ -8,7 +8,7 @@ const Artist = () => {
   const params = useParams();
   const [loading, setLoading] = useState(true);
 
-  const isLoaded = useFetch(
+  const [isLoaded, error] = useFetch(
     [
       {
         url: `https://api.spotify.com/v1/artists/${params.artistId}`,
@@ -23,7 +23,7 @@ const Artist = () => {
     else setLoading(false);
   }, [isLoaded]);
 
-  if (!loading) {
+  if (!loading && !error) {
     return <ArtistsPage />;
   }
 };

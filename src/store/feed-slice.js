@@ -8,12 +8,16 @@ const initialState = {
   viralIndia: {},
   topArtists: {},
   feedAll: {},
+  isError: false,
 };
 
 const feedSlice = createSlice({
   name: "feed",
   initialState: initialState,
   reducers: {
+    setIsError(state, action) {
+      state.isError = action.payload.error;
+    },
     setRecentlyplayed(state, action) {
       state.recentlyPlayed.items = action.payload.playlist;
       state.recentlyPlayed.itemsTrim = action.payload.playlistTrim;

@@ -66,6 +66,10 @@
   outline: none;
 }
 
+.profile {
+  display: flex;
+}
+
 .profileContainer {
   opacity: 0;
   width: fit-content;

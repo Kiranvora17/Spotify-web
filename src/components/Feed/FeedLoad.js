@@ -10,9 +10,12 @@ import {
 import { profileActions } from "../../store/profile-slice";
 import useFetch from "../../Hooks/FetchHook";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { feedActions } from "../../store/feed-slice";
 
 const FeedLoad = () => {
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
   const requestArray = [
     {
       url: "https://api.spotify.com/v1/browse/new-releases",
@@ -44,14 +47,20 @@ const FeedLoad = () => {
     },
   ];
 
-  const isLoaded = useFetch(requestArray);
+  const [isLoaded, error] = useFetch(requestArray);
+
+  useEffect(() => {
+    if (error) {
+      dispatch(feedActions.setIsError({ error: true }));
+    }
+  }, [error]);
 
   useEffect(() => {
     if (isLoaded) setLoading(true);
     else setLoading(false);
   }, [isLoaded]);
 
-  if (!loading) {
+  if (!loading && !error) {
     return <Feed />;
   }
 };

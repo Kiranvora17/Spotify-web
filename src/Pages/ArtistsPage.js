@@ -49,7 +49,7 @@ const ArtistsPage = () => {
     },
   ];
 
-  const isLoaded = useFetch(requestArray);
+  const [isLoaded] = useFetch(requestArray);
 
   useEffect(() => {
     if (isLoaded) setLoading(true);

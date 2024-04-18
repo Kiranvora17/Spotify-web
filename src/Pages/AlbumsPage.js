@@ -14,7 +14,7 @@ const AlbumsPage = (props) => {
   const [loading, setLoading] = useState(true);
   const playlist = useSelector((state) => state.album.albumPlaylist);
 
-  const isLoaded = useFetch([
+  const [isLoaded] = useFetch([
     {
       url: `https://api.spotify.com/v1/artists/${playlist.artists.id}/albums?include_groups=appears_on%2Ccompilation%2Calbum&market=IN`,
       saveData: recommendActions,

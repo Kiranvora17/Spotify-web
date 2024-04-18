@@ -9,7 +9,7 @@ const Tracks = () => {
   const params = useParams();
   const [loading, setLoading] = useState(true);
 
-  const isLoaded = useFetch(
+  const [isLoaded, error] = useFetch(
     [
       {
         url: `https://api.spotify.com/v1/tracks/${params.trackId}?market=IN`,
@@ -24,7 +24,7 @@ const Tracks = () => {
     else setLoading(false);
   }, [isLoaded]);
 
-  if (!loading) {
+  if (!loading && !error) {
     return <TrackPage id={params.trackId} />;
   }
 };

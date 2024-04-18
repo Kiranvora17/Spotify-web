@@ -95,9 +95,9 @@ const LoginPage = () => {
         </button>
       </div>
       <div className={classes.disclaimer}>
-        * If you are first time visiting this page, then send your spotify
-        username and registered email id to{" "}
-        <a href="mailto:vorakiran79@gmail.com">vorakiran79@gmail.com</a>
+        * If you are first time visiting this page, then fill up this
+        registeration form{" "}
+        <a href="https://forms.gle/Ckci4QL7H1ZeBTH47">Click here</a>
       </div>
     </>
   );

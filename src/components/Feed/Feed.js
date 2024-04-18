@@ -19,7 +19,7 @@ const Feed = () => {
   const viral = useSelector((state) => state.feed.viralIndia);
   const topArtists = useSelector((state) => state.feed.topArtists);
 
-  const isLoaded = useFetch([
+  const [loading, error] = useFetch([
     {
       url: `https://api.spotify.com/v1/me/tracks?market=IN&limit=50`,
       saveData: likeTrackActions,
@@ -43,7 +43,7 @@ const Feed = () => {
   ]);
 
   if (Object.keys(recentlyPlayed).length === 0) return;
-  else {
+  else if (!loading && !error) {
     return (
       <div className={classes.container}>
         {recentlyPlayed.items.length > 0 && (
