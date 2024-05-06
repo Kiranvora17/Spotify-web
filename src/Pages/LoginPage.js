@@ -13,7 +13,8 @@ const getCode = async () => {
   const codeChallenge = base64encode(hashed);
 
   const clientId = "4382c1ae8960482f8056bd573eec9f4c";
-  const redirectUri = "https://spotify-web-drab.vercel.app/login";
+  // const redirectUri = "https://spotify-web-drab.vercel.app/login";
+  const redirectUri = "http://localhost:3000/login";
 
   const scope =
     "user-read-private user-read-email user-read-recently-played user-top-read user-follow-read user-library-read playlist-read-private user-read-playback-state user-modify-playback-state streaming user-library-modify playlist-modify-private playlist-modify-public user-follow-modify";
@@ -39,7 +40,7 @@ const getToken = async (code) => {
   // stored in the previous step
   let codeVerifier = localStorage.getItem("code_verifier");
   const clientId = "4382c1ae8960482f8056bd573eec9f4c";
-  const redirectUri = "https://spotify-web-drab.vercel.app/login";
+  const redirectUri = "http://localhost:3000/login";
 
   const payload = {
     method: "POST",
@@ -62,7 +63,7 @@ const getToken = async (code) => {
   localStorage.setItem("access_token", response.access_token);
   localStorage.setItem("refresh_token", response.refresh_token);
 
-  window.location.href = "https://spotify-web-drab.vercel.app/";
+  window.location.href = "http://localhost:3000/";
 };
 
 const LoginPage = () => {
@@ -76,7 +77,7 @@ const LoginPage = () => {
     }
 
     if (Date.now() - timeStamp < 3500000) {
-      window.location.href = "https://spotify-web-drab.vercel.app/";
+      window.location.href = "http://localhost:3000/";
     }
   }, []);
 
